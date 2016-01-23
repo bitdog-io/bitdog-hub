@@ -1,0 +1,14 @@
+{
+  "name": "BitdogSA",
+  "version": "0.0.0",
+  "description": "Bitdog Security & Automation",
+  "main": "app.js",
+  "author": {
+    "name": "Bitdog LLC",
+    "email": "vjm@bitdog.io"
+  },
+  "dependencies": {
+    "bitdog-client": "0.0.26",
+    "express": "^4.13.4"
+  }
+}
