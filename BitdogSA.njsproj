@@ -31,6 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="bitdogSA.js" />
+    <Compile Include="lib\commonMessageSchemas.js" />
+    <Compile Include="lib\constants.js" />
     <Compile Include="lib\zwave.js" />
     <Content Include=".npmignore" />
     <Content Include="package.json" />
