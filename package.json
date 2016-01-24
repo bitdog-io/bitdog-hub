@@ -1,14 +1,14 @@
 {
-  "name": "BitdogSA",
-  "version": "0.0.1",
-  "description": "Bitdog Security & Automation",
+  "name": "bitdog-sa",
+  "version": "0.0.9",
+  "description": "Bitdog Security and Automation",
   "main": "bitdogSA.js",
   "author": {
     "name": "Bitdog LLC",
     "email": "vjm@bitdog.io"
   },
   "dependencies": {
-    "bitdog-client": "^0.0.27",
+    "bitdog-client": "^0.0.31",
     "express": "^4.13.4",
     "openzwave-shared": "^1.1.6"
   }
