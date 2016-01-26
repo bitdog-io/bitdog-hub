@@ -34,7 +34,9 @@
     <Compile Include="lib\zwaveCommandClasses.js" />
     <Compile Include="lib\commonMessageSchemas.js" />
     <Compile Include="lib\constants.js" />
-    <Compile Include="lib\zwave.js" />
+    <Compile Include="lib\bitdogZWave.js" />
+    <Compile Include="lib\zwave\zwaveNode.js" />
+    <Compile Include="lib\zwave\zwaveValue.js" />
     <Content Include=".npmignore" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -42,6 +44,7 @@
   <ItemGroup>
     <Folder Include="lib\" />
     <Folder Include="bin\" />
+    <Folder Include="lib\zwave\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
