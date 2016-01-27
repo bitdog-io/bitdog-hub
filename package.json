@@ -1,6 +1,6 @@
 {
   "name": "bitdog-sa",
-  "version": "0.0.14",
+  "version": "0.0.18",
   "description": "Bitdog Security and Automation",
   "keywords": "iot zwave raspberry pi arduino yun edison things robot automation sensor motor controller servo camera johnny-five weaved",
   "main": "bitdogSA.js",
@@ -17,7 +17,7 @@
     "url": "https://github.com/bitdog-io/bitdogSA"
   },
   "dependencies": {
-    "bitdog-client": "^0.0.33",
+    "bitdog-client": "^0.0.35",
     "express": "^4.13.4",
     "openzwave-shared": "^1.1.6"
   }
