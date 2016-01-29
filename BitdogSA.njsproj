@@ -32,7 +32,7 @@
   <ItemGroup>
     <Compile Include="bitdogSA.js" />
     <Compile Include="lib\zwaveCommandClasses.js" />
-    <Compile Include="lib\commonMessageSchemas.js" />
+    <Compile Include="lib\coreMessageSchemas.js" />
     <Compile Include="lib\constants.js" />
     <Compile Include="lib\bitdogZWave.js" />
     <Compile Include="lib\zwave\zwaveNode.js" />
