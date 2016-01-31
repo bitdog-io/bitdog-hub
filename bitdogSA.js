@@ -6,7 +6,7 @@ var bitdogZWave = null;
 
 bitdogClient.on('ready', function () {
 
-    bitdogZWave = new BitdogZWave();
+    bitdogZWave = new BitdogZWave(bitdogClient);
     bitdogZWave.start();
 
 });

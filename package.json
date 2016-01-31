@@ -17,7 +17,7 @@
     "url": "https://github.com/bitdog-io/bitdogSA"
   },
   "dependencies": {
-    "bitdog-client": "^0.0.37",
+    "bitdog-client": "^0.0.38",
     "express": "^4.13.4",
     "openzwave-shared": "^1.1.6"
   }
