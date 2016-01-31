@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>38f4cfe3-f058-4502-a3ac-88a177bce85c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bitdogSA.js</StartupFile>
+    <StartupFile>lib\bitdogSA.js</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="bitdogSA.js" />
+    <Compile Include="lib\bitdogSA.js" />
     <Compile Include="lib\zwaveCommandClasses.js" />
     <Compile Include="lib\coreMessageSchemas.js" />
     <Compile Include="lib\constants.js" />
