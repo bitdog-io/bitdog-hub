@@ -35,6 +35,7 @@
     <Compile Include="lib\coreMessageSchemas.js" />
     <Compile Include="lib\constants.js" />
     <Compile Include="lib\bitdogZWave.js" />
+    <Compile Include="lib\zwave\zwaveHome.js" />
     <Compile Include="lib\zwave\zwaveNode.js" />
     <Compile Include="lib\zwave\zwaveValue.js" />
     <Content Include=".npmignore" />
