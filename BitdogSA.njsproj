@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="lib\bitdogSA.js" />
-    <Compile Include="lib\zwaveCommandClasses.js" />
+    <Compile Include="lib\zwave\zwaveCommandClasses.js" />
     <Compile Include="lib\coreMessageSchemas.js" />
     <Compile Include="lib\constants.js" />
-    <Compile Include="lib\bitdogZWave.js" />
+    <Compile Include="lib\zwave\bitdogZWave.js" />
     <Compile Include="lib\zwave\zwaveClass.js" />
     <Compile Include="lib\zwave\zwaveHome.js" />
     <Compile Include="lib\zwave\zwaveInstance.js" />
@@ -47,6 +47,8 @@
   <ItemGroup>
     <Folder Include="lib\" />
     <Folder Include="bin\" />
+    <Folder Include="lib\alarm\" />
+    <Folder Include="lib\automation\" />
     <Folder Include="lib\zwave\" />
     <Folder Include="examples\" />
   </ItemGroup>
