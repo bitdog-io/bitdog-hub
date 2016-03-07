@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="lib\alarm\bitdogAlarm.js" />
+    <Compile Include="lib\alarm\zone.js" />
     <Compile Include="lib\automation\bitdogAutomation.js" />
     <Compile Include="lib\bitdogSA.js" />
     <Compile Include="lib\eventProcessor.js" />

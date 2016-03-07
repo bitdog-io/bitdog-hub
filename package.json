@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "bitdog-client": "git://github.com/bitdog-io/bitdog-client.git",
-    "express": "^4.13.4",
     "openzwave-shared": "git+https://github.com/OpenZWave/node-openzwave-shared.git"
   }
 }
