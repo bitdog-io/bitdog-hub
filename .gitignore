@@ -78,3 +78,5 @@ obj
 *.dll
 *.suo
 
+/BitdogSA.VC.db
+/BitdogSA.VC.VC.opendb

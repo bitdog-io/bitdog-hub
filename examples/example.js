@@ -6,7 +6,7 @@ bitdogSA.start();
 bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchemas.onOffMessageSchema, function (message, configuration, logger) {
     
     // Every time this command is received, we will simply log the fact
-    logger.log('User', 'Turn local LED on/off' + message.value);
+    logger.log('User', 'Turn local LED on/off - ' + message.value);
 
 });
 
