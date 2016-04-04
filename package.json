@@ -1,9 +1,9 @@
 {
   "name": "bitdog-sa",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "Bitdog Security and Automation",
   "keywords": "iot zwave raspberry pi arduino yun edison things robot automation sensor motor controller servo camera johnny-five weaved",
-  "main": "./lib/bitdogSA.js",
+  "main": "./examples/example.js",
   "author": {
     "name": "Bitdog LLC",
     "email": "vjm@bitdog.io"
