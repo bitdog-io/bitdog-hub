@@ -35,7 +35,7 @@
     <Compile Include="lib\alarm\bitdogAlarm.js" />
     <Compile Include="lib\alarm\zone.js" />
     <Compile Include="lib\automation\bitdogAutomation.js" />
-    <Compile Include="lib\bitdogSA.js" />
+    <Compile Include="lib\bitdogHub.js" />
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\zwave\zwaveCommandClasses.js" />
     <Compile Include="lib\coreMessageSchemas.js" />
