@@ -1,7 +1,7 @@
-﻿var bitdogSA = require('../lib/bitdogSA.js');
+﻿var bitdogHub = require('../lib/bitdogHub.js');
 var bitdogClient = require('bitdog-client');
 
-bitdogSA.start();
+bitdogHub.start();
 
 bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchemas.onOffMessageSchema, function (message, configuration, logger) {
     
@@ -11,7 +11,7 @@ bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchem
 });
 
 process.on('SIGINT', function () {
-    bitdogClient.logger.logProcessEvent('Example Security and Automation', 'SIGINT, stopping.');
-    bitdogSA.stop();
+    bitdogClient.logger.logProcessEvent('Example Bitdog Hub', 'SIGINT, stopping.');
+    bitdogHub.stop();
     process.exit();
 });
