@@ -1,6 +1,6 @@
 {
   "name": "bitdog-hub",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "Bitdog Home Security and Automation",
   "keywords": "iot z-wave raspberry pi arduino edison automation home sensor",
   "main": "./examples/example.js",
