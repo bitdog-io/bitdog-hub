@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="examples\example.js" />
+    <Compile Include="lib\alarm\alarmMode.js" />
     <Compile Include="lib\alarm\bitdogAlarm.js" />
     <Compile Include="lib\alarm\zone.js" />
     <Compile Include="lib\automation\bitdogAutomation.js" />
