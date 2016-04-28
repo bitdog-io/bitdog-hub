@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "bitdog-client": "git+https://github.com/bitdog-io/bitdog-client.git",
-    "openzwave-shared": "git+https://github.com/OpenZWave/node-openzwave-shared.git"
+    "openzwave-shared": "git+https://github.com/OpenZWave/node-openzwave-shared.git",
+    "rpi-gpio": "^0.7.0"
   }
 }

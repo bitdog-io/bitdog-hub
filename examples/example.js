@@ -10,6 +10,15 @@ bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchem
 
 });
 
+bitdog.addDataCollector('Position', bitdog.commonMessageSchemas.mapPositionMessageSchema , 10000, function (message, configuration, logger) {
+    
+    // Instead of collecting real data, we are just sending random data
+    // for this test
+    message.latitude = Math.floor((Math.random() * 100) + 1);
+    message.longitude = Math.floor((Math.random() * 100) + 1);
+   
+});
+
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Example Bitdog Hub', 'SIGINT, stopping.');
     bitdogHub.stop();
