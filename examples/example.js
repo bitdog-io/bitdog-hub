@@ -10,7 +10,7 @@ bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchem
 
 });
 
-bitdog.addDataCollector('Position', bitdog.commonMessageSchemas.mapPositionMessageSchema , 10000, function (message, configuration, logger) {
+bitdogClient.addDataCollector('Position', bitdogClient.commonMessageSchemas.mapPositionMessageSchema , 10000, function (message, configuration, logger) {
     
     // Instead of collecting real data, we are just sending random data
     // for this test
