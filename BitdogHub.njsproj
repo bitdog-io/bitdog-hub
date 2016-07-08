@@ -49,6 +49,7 @@
     <Compile Include="lib\zwave\zwaveNode.js" />
     <Compile Include="lib\zwave\zwaveValue.js" />
     <Content Include=".npmignore" />
+    <Content Include="database\README.md" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
