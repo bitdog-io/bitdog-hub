@@ -60,6 +60,14 @@
     <Folder Include="lib\brains\" />
     <Folder Include="lib\zwave\" />
     <Folder Include="examples\" />
+    <Folder Include="database\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\globals\" />
+    <Folder Include="typings\globals\node\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
+    <TypeScriptCompile Include="typings\index.d.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
