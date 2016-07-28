@@ -1,7 +1,6 @@
 ﻿var bitdogHub = require('../lib/bitdogHub.js');
 var bitdogClient = require('bitdog-client');
 
-bitdogHub.start();
 
 bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchemas.onOffMessageSchema, function (message, configuration, logger) {
     
@@ -24,3 +23,6 @@ process.on('SIGINT', function () {
     bitdogHub.stop();
     process.exit();
 });
+
+
+bitdogHub.start();
