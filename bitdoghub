@@ -4,7 +4,7 @@ var bitdogClient = require('bitdog-client');
 
 program
     .version('0.0.50');
-
+	 
 program.command('register')
     .description('Register this hub with Bitdog Cloud.')
     .option('-u,--username <username>', 'The username for the Bitdog IoT Cloud to register this node with.')
