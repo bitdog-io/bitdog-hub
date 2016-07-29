@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
 
@@ -60,3 +60,6 @@ program.parse(process.argv);
 if (!process.argv.slice(2).length) {
     program.outputHelp();
 }
+
+
+
