@@ -16,6 +16,9 @@
     "type": "git",
     "url": "https://github.com/bitdog-io/bitdog-hub"
   },
+  "bin": {
+    "bitdoghub": "./bitdoghub"
+  },
   "dependencies": {
     "bitdog-client": "git+https://github.com/bitdog-io/bitdog-client.git",
     "commander": "^2.9.0",
