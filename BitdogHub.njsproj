@@ -48,7 +48,6 @@
     <Compile Include="lib\zwave\zwaveInstance.js" />
     <Compile Include="lib\zwave\zwaveNode.js" />
     <Compile Include="lib\zwave\zwaveValue.js" />
-    <Compile Include="bin\bitdoghub.js" />
     <Content Include=".npmignore" />
     <Content Include="database\README.md" />
     <Content Include="package.json" />

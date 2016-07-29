@@ -1,4 +1,6 @@
-﻿var program = require('commander');
+﻿#!/usr/bin/env node
+var program = require('commander');
+var bitdogClient = require('bitdog-client');
 
 program
     .version('0.0.50');
@@ -16,7 +18,7 @@ program.command('register')
         }
         else {
             console.log('Registering node...')
-            var adminManager = require('../lib/admin/managers/adminManager.js');
+            var adminManager = bitdogClient.adminManager;
             var nodeName = typeof options.nodename == 'undefined' ? 'New Node' : options.nodename;
             adminManager.registerNode(options.username, options.passphrase, nodeName, function (success) { console.log('Registration successful.'); }, function (error) { console.log(error); });
 
