@@ -31,6 +31,9 @@ program
     .command('start')
     .description('Start Bitdog Hub.')
     .action(function (options) {
+		var path = require('path');
+		var packageFilePath = path.resolve(__dirname, '../');
+
 		var child_process = require('child_process');
 		var cp_opt = { 
 			 stdio: ['ignore', 'ignore' , 'ignore'], 
@@ -41,7 +44,7 @@ program
  
  
      // spawn the child using the same node process as ours 
-     var child = child_process.spawn('node', ['../'], cp_opt); 
+     var child = child_process.spawn('node', [packageFilePath], cp_opt); 
 	 
 	 var pid = child.pid;
 	 	
