@@ -35,7 +35,7 @@ program
 		var toLogFile = stream({ file: './test.log', size: '100k', keep: 3 });	
 		var child_process = require('child_process');
 		var cp_opt = { 
-			 stdio: ['ignore', 'ignore' , 'ignore'], 
+			 stdio: ['ignore', 'pipe' , 'pipe'], 
 			 env: process.env, 
 			 cwd: process.cwd, 
 			 detached: true 
