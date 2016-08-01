@@ -42,7 +42,7 @@ program
  
  
      // spawn the child using the same node process as ours 
-     var child = child_process.spawn('node', '../', cp_opt); 
+     var child = child_process.spawn('node', ['../'], cp_opt); 
 	 var pid = child.pid;
 	 	
      console.log('Started process ' + pid);
