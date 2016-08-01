@@ -22,6 +22,7 @@
   "dependencies": {
     "bitdog-client": "git+https://github.com/bitdog-io/bitdog-client.git",
     "commander": "^2.9.0",
+    "logrotate-stream": "^0.2.5",
     "openzwave-shared": "git+https://github.com/OpenZWave/node-openzwave-shared.git",
     "tingodb": "^0.4.2"
   }
