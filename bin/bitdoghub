@@ -31,11 +31,9 @@ program
     .command('start')
     .description('Start Bitdog Hub.')
     .action(function (options) {
-		var stream = require('logrotate-stream');
-		var toLogFile = stream({ file: './test.log', size: '100k', keep: 3 });	
 		var child_process = require('child_process');
 		var cp_opt = { 
-			 stdio: ['ignore', 'pipe' , 'pipe'], 
+			 stdio: ['ignore', 'ignore' , 'ignore'], 
 			 env: process.env, 
 			 cwd: process.cwd, 
 			 detached: true 
@@ -45,9 +43,6 @@ program
      // spawn the child using the same node process as ours 
      var child = child_process.spawn('node', ['../'], cp_opt); 
 	 
-	 child.stdout.pipe(toLogFile);
-	 child.stderr.pipe(toLogFile);
-
 	 var pid = child.pid;
 	 	
      console.log('Started process ' + pid);
