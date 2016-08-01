@@ -21,8 +21,15 @@ bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchem
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Example Bitdog Hub', 'SIGINT, stopping.');
     bitdogHub.stop();
-    process.exit();
+    setTimeout(function () { process.exit(); }, 5000);
 });
+
+process.on('uncaughtException', function (ex) {
+    bitdogClient.logger.logProcessEvent('Unhandled exception, stopping.', ex);
+    setTimeout(function () { process.exit(); }, 5000);
+
+});
+
 
 
 bitdogHub.start();
