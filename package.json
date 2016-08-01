@@ -1,6 +1,6 @@
 {
   "name": "bitdog-hub",
-  "version": "0.0.50",
+  "version": "0.0.51",
   "description": "Bitdog Home Security and Automation",
   "keywords": "iot z-wave raspberry pi home automation sensor",
   "main": "./examples/example.js",
@@ -17,7 +17,7 @@
     "url": "https://github.com/bitdog-io/bitdog-hub"
   },
   "bin": {
-    "bitdoghub": "./bitdoghub"
+    "bitdoghub": "./bin/bitdoghub"
   },
   "dependencies": {
     "bitdog-client": "git+https://github.com/bitdog-io/bitdog-client.git",
