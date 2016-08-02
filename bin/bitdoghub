@@ -59,8 +59,6 @@ program
 					detached: true 
 				}; 
  
- 
-				// spawn the child using the same node process as ours 
 				var child = child_process.spawn('node', [packageFilePath], opt); 
 				var pidId = child.pid;
 				
@@ -72,6 +70,12 @@ program
 				setTimeout(function() {
 					try
 					{
+						opt = { 
+							stdio: ['ignore', 'ignore' , 'ignore'], 
+							env: process.env, 
+							cwd: process.cwd, 
+						}; 
+
 						child_process.execSync('kill -s 0 ' + pidId, opt);
 						console.log('bitdog-hub started');
 
@@ -117,7 +121,13 @@ program
 			var pidId = parseInt(pid);
 
 			console.log('Stopping bitdog-hub...');
-			process.kill(pidId,'SIGINT');
+
+			try
+			{
+				process.kill(pidId,'SIGINT');
+			}
+			catch(e) {
+			}
 
 			setTimeout(function() {
 				try
