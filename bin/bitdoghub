@@ -77,7 +77,7 @@ program
 							shell: '/bin/bash'
 						}; 
 
-						child_process.execSync('/bin/kill -s 0 ' + pidId, opt);
+						child_process.spawnSync('/bin/kill -s 0 ' + pidId,[], opt);
 						console.log('bitdog-hub started');
 
 					} catch(e) {					
@@ -135,7 +135,7 @@ program
 						 shell: '/bin/bash'
 					}; 
 
-					child_process.execSync('/bin/kill -s 0 ' + pidId, opt);
+					child_process.spawnSync('/bin/kill -s 0 ' + pidId,[], opt);
 					console.log('bitdog-hub did not stop in timely fashion');
 
 				} catch(e) {					
