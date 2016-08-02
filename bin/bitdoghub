@@ -74,7 +74,7 @@ program
 			var pid = fs.readFileSync(pidFile);
 			var pidId = parseInt(pid);
 
-			child_process.execSync('kill -s SIGINT ' + pidId);
+			child_process.execSync('kill -s 2 ' + pidId);
 
 
     
