@@ -73,12 +73,12 @@ program
 
 						child_process.execSync('/bin/kill -s 0 ' + pidId);
 						console.log('bitdog-hub started');
-						exit(0);
+					    process.exitCode = 0;
 
 					} catch(e) {					
 						console.log('bitdog-hub has failed to start properly, pid:' + pidId);
    						fs.unlinkSync(pidFile);
-						exit(1);
+						process.exitCode = 1;
 					}
 
 				}, 10000);
@@ -105,7 +105,7 @@ program
 			}
 			catch(e) {
 				console.log('Process id file not found, bitdog-hub may not be running');
-				return;
+				process.exitCode = 1;
 			}
 
 			var pid = fs.readFileSync(pidFile);
@@ -123,12 +123,12 @@ program
 				{
 					child_process.execSync('/bin/kill -s 0 ' + pidId);
 					console.log('bitdog-hub did not stop in timely fashion');
-					exit(1);
+					process.exitCode = 1;
 
 				} catch(e) {					
 				    console.log('bitdog-hub has stopped');
    				    fs.unlinkSync(pidFile);
-					exit(0);
+					process.exitCode = 0;
 				}
 
 			}, 10000);
@@ -138,14 +138,14 @@ program
 			console.log(JSON.stringify(e));
 		}
 
-		exit(1);
-
     });
 
 program.parse(process.argv);
 
 if (!process.argv.slice(2).length) {
     program.outputHelp();
+	process.exitCode = 1;
+
 }
 
 
