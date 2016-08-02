@@ -70,20 +70,15 @@ program
 				setTimeout(function() {
 					try
 					{
-						opt = { 
-							stdio: ['ignore', 'ignore' , 'ignore'], 
-							env: process.env, 
-							cwd: process.cwd, 
-							shell: '/bin/bash'
-						}; 
 
 						child_process.execSync('/bin/kill -s 0 ' + pidId);
 						console.log('bitdog-hub started');
+						exit(0);
 
 					} catch(e) {					
 						console.log('bitdog-hub has failed to start properly, pid:' + pidId);
-						console.log(JSON.stringify(e));
    						fs.unlinkSync(pidFile);
+						exit(1);
 					}
 
 				}, 10000);
@@ -116,8 +111,6 @@ program
 			var pid = fs.readFileSync(pidFile);
 			var pidId = parseInt(pid);
 
-			console.log('Stopping bitdog-hub...');
-
 			try
 			{
 				process.kill(pidId,'SIGINT');
@@ -128,20 +121,14 @@ program
 			setTimeout(function() {
 				try
 				{
-					var opt = { 
-						 stdio: ['ignore', 'ignore' , 'ignore'], 
-						 env: process.env, 
-						 cwd: process.cwd, 
-						 shell: '/bin/bash'
-					}; 
-
 					child_process.execSync('/bin/kill -s 0 ' + pidId);
 					console.log('bitdog-hub did not stop in timely fashion');
+					exit(1);
 
 				} catch(e) {					
 				    console.log('bitdog-hub has stopped');
    				    fs.unlinkSync(pidFile);
-					return;
+					exit(0);
 				}
 
 			}, 10000);
@@ -150,6 +137,8 @@ program
 		} catch (e) {
 			console.log(JSON.stringify(e));
 		}
+
+		exit(1);
 
     });
 
