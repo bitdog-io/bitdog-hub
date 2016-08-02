@@ -81,6 +81,7 @@ program
 
 					} catch(e) {					
 						console.log('bitdog-hub has failed to start properly, pid:' + pidId);
+						console.log(JSON.stringify(e));
    						fs.unlinkSync(pidFile);
 					}
 
