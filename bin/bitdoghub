@@ -63,6 +63,7 @@ program
     .description('Stop bitdog-hub.')
     .action(function (options) {
 		var child_process = require('child_process');
+		var process = require('process');
         var fs = require('fs');
 		var path = require('path');
 		var packageFilePath = path.resolve(__dirname, '../');
@@ -74,7 +75,7 @@ program
 			var pid = fs.readFileSync(pidFile);
 			var pidId = parseInt(pid);
 
-			child_process.execSync('kill -s 2 ' + pidId);
+			process.kill(pidId,'SIGINT');
 
 
     
