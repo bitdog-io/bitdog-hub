@@ -36,7 +36,7 @@ program
 		if(bitdogClient.configuration.isRegistered === false) {
 			var readline = require('readline');
 			var rl = readline.createInterface(process.stdin, process.stdout);
-			rl.question("This bitdog-hub is not registered, try automatic registration? (y/n)", function(answer) {
+			rl.question("This bitdog-hub is not registered, try automatic registration? (y/n) ", function(answer) {
 				rl.close();
 				if(answer === 'y')
 					start();
@@ -62,13 +62,26 @@ program
  
 				// spawn the child using the same node process as ours 
 				var child = child_process.spawn('node', [packageFilePath], opt); 
-	 
-				fs.writeFileSync(pidFile, child.pid);
-	 	
-				console.log('bitdog-hub started');
-
+				var pidId = child.pid;
+				
 				// required so the parent can exit 
 				child.unref(); 
+
+				fs.writeFileSync(pidFile, pidId);
+
+				setTimeout(function() {
+					try
+					{
+						child_process.execSync('kill -s 0 ' + pidId, opt);
+						console.log('bitdog-hub started');
+
+					} catch(e) {					
+						console.log('bitdog-hub has failed to start properly');
+   						fs.unlinkSync(pidFile);
+					}
+
+				}, 10000);
+
 
 		}
 
