@@ -74,9 +74,10 @@ program
 							stdio: ['ignore', 'ignore' , 'ignore'], 
 							env: process.env, 
 							cwd: process.cwd, 
+							shell: '/bin/bash'
 						}; 
 
-						child_process.execSync('kill -s 0 ' + pidId, opt);
+						child_process.execSync('kill -s 0 ' + pidId,[], opt);
 						console.log('bitdog-hub started');
 
 					} catch(e) {					
@@ -100,12 +101,6 @@ program
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
 		var pidFile = path.resolve(__dirname,'pid.txt');
-
-		var opt = { 
-			 stdio: ['ignore', 'ignore' , 'ignore'], 
-			 env: process.env, 
-			 cwd: process.cwd, 
-		}; 
 
 		try {
 
@@ -133,7 +128,14 @@ program
 			setTimeout(function() {
 				try
 				{
-					child_process.execSync('kill -s 0 ' + pidId, opt);
+					var opt = { 
+						 stdio: ['ignore', 'ignore' , 'ignore'], 
+						 env: process.env, 
+						 cwd: process.cwd, 
+						 shell: '/bin/bash'
+					}; 
+
+					child_process.execSync('kill -s 0 ' + pidId, [], opt);
 					console.log('bitdog-hub did not stop in timely fashion');
 
 				} catch(e) {					
