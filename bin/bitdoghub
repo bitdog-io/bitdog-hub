@@ -77,7 +77,7 @@ program
 							shell: '/bin/bash'
 						}; 
 
-						child_process.execSync('/bin/kill' -s 0 ' + pidId, opt);
+						child_process.execSync('/bin/kill -s 0 ' + pidId, opt);
 						console.log('bitdog-hub started');
 
 					} catch(e) {					
