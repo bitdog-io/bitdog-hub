@@ -81,22 +81,19 @@ program
 				try
 				{
 					child_process.execSync('kill -s 0 ' + pidId);
-				} catch(e) {
-					console.log(JSON.stringify(e));
+					console.log('bitdog-hub did not stop in timely fashion');
+				} catch(e) {					
+					console.log('bitdog-hub stopped');
+   				    fs.unlinkSync(pidFile);
+					return;
 				}
-			}, 5000);
 
+			}, 10000);
 
-
-
-
-    
+   
 		} catch (e) {
 			console.log(JSON.stringify(e));
 		}
-
-
-
 
     });
 
