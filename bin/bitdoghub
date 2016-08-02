@@ -1,6 +1,10 @@
 #!/usr/bin/env node
+
+var process = require('process');
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
+
+process.chdir(__dirname);
 
 program
     .version('0.0.50');
@@ -63,7 +67,6 @@ program
     .description('Stop bitdog-hub.')
     .action(function (options) {
 		var child_process = require('child_process');
-		var process = require('process');
         var fs = require('fs');
 		var path = require('path');
 		var packageFilePath = path.resolve(__dirname, '../');
