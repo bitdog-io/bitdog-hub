@@ -84,7 +84,7 @@ program
 				} catch(e) {
 					console.log(JSON.stringify(e));
 				}
-			}. 5000);
+			}, 5000);
 
 
 
