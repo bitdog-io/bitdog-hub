@@ -31,12 +31,12 @@ program
     .command('start')
     .description('Start Bitdog Hub.')
     .action(function (options) {
-		 var fs = require('fs');
+        var fs = require('fs');
 		var path = require('path');
+		var child_process = require('child_process');
 		var packageFilePath = path.resolve(__dirname, '../');
 		var pidFile = path.resolve(__dirname,'pid.txt');
 
-		var child_process = require('child_process');
 		var cp_opt = { 
 			 stdio: ['ignore', 'ignore' , 'ignore'], 
 			 env: process.env, 
@@ -50,7 +50,7 @@ program
 	 
 	 fs.writeFileSync(pidFile, child.pid);
 	 	
-     console.log('Bitdog Hub started');
+     console.log('bitdog-hub started');
 
      // required so the parent can exit 
      child.unref(); 
@@ -60,24 +60,27 @@ program
 
 program
     .command('stop')
-    .description('Stop Bitdog Hub.')
+    .description('Stop bitdog-hub.')
     .action(function (options) {
+		var child_process = require('child_process');
+        var fs = require('fs');
+		var path = require('path');
+		var packageFilePath = path.resolve(__dirname, '../');
+		var pidFile = path.resolve(__dirname,'pid.txt');
 
-        if ((options.start && options.stop) || (typeof options.start == 'undefined' && typeof options.stop == 'undefined')) {
-            console.log('Please provide one option.');
-            this.outputHelp();
-        } else if (options.start) {
+		try {
+			fs.accessSync(pidFile, fs.F_OK);
 
-            var agentPid = null;
-            var AgentProcess = require('../lib/agentProcess.js');
-            var agentProcess = new AgentProcess();
-            agentPid = agentProcess.start();
+			var pid = fs.readFileSync(pidFile);
+			var pidId = parseInt(pid);
 
-        } else if (options.stop) {
-            var AgentProcess = require('../lib/agentProcess.js');
-            var agentProcess = new AgentProcess();
-            agentProcess.stop();
-        }
+			child_process.execSync('kill -s SIGINT ' + pidId);
+
+
+    
+		} catch (e) {
+			console.log(JSON.stringify(e));
+		}
 
 
 
