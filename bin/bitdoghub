@@ -34,7 +34,7 @@ program
 		 var fs = require('fs');
 		var path = require('path');
 		var packageFilePath = path.resolve(__dirname, '../');
-		var pidFile = path.resolve(__dirmane,'pid.txt');
+		var pidFile = path.resolve(__dirname,'pid.txt');
 
 		var child_process = require('child_process');
 		var cp_opt = { 
