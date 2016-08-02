@@ -77,6 +77,18 @@ program
 
 			process.kill(pidId,'SIGINT');
 
+			setTimeout(function() {
+				try
+				{
+					child_process.execSync('kill -s 0 ' + pidId);
+				} catch(e) {
+					console.log(JSON.stringify(e));
+				}
+			}. 5000);
+
+
+
+
 
     
 		} catch (e) {
