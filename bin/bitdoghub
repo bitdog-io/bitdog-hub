@@ -33,29 +33,44 @@ program
     .command('start')
     .description('Start Bitdog Hub.')
     .action(function (options) {
-        var fs = require('fs');
-		var child_process = require('child_process');
-		var packageFilePath = path.resolve(__dirname, '../');
-		var pidFile = path.resolve(__dirname,'pid.txt');
+		if(bitdogClient.configuration.isRegistered === false) {
+			var readline = require('readline');
+			var rl = readline.createInterface(process.stdin, process.stdout);
+			rl.question("This bitdog-hub is not registered, try automatic registration? (y/n)", function(answer) {
+				rl.close();
+				if(anwser === 'y')
+					start();
+			});
 
-		var opt = { 
-			 stdio: ['ignore', 'ignore' , 'ignore'], 
-			 env: process.env, 
-			 cwd: process.cwd, 
-			 detached: true 
-		}; 
- 
- 
-     // spawn the child using the same node process as ours 
-     var child = child_process.spawn('node', [packageFilePath], opt); 
+		} else {
+			start();
+		}
 	 
-	 fs.writeFileSync(pidFile, child.pid);
+		function start() {
+			var fs = require('fs');
+			var child_process = require('child_process');
+			var packageFilePath = path.resolve(__dirname, '../');
+			var pidFile = path.resolve(__dirname,'pid.txt');
+
+			var opt = { 
+					stdio: ['ignore', 'ignore' , 'ignore'], 
+					env: process.env, 
+					cwd: process.cwd, 
+					detached: true 
+				}; 
+ 
+ 
+				// spawn the child using the same node process as ours 
+				var child = child_process.spawn('node', [packageFilePath], opt); 
+	 
+				fs.writeFileSync(pidFile, child.pid);
 	 	
-     console.log('bitdog-hub started');
+				console.log('bitdog-hub started');
 
-     // required so the parent can exit 
-     child.unref(); 
+				// required so the parent can exit 
+				child.unref(); 
 
+		}
 
     });
 
