@@ -69,21 +69,29 @@ program
 		var packageFilePath = path.resolve(__dirname, '../');
 		var pidFile = path.resolve(__dirname,'pid.txt');
 
+		var cp_opt = { 
+			 stdio: ['ignore', 'ignore' , 'ignore'], 
+			 env: process.env, 
+			 cwd: process.cwd, 
+			 detached: false 
+		}; 
+
 		try {
 			fs.accessSync(pidFile, fs.F_OK);
 
 			var pid = fs.readFileSync(pidFile);
 			var pidId = parseInt(pid);
 
+			console.log('Stopping bitdog-hub...');
 			process.kill(pidId,'SIGINT');
 
 			setTimeout(function() {
 				try
 				{
-					child_process.execSync('kill -s 0 ' + pidId);
+					child_process.execSync('kill -s 0 ' + pidId,[], cp_opt);
 					console.log('bitdog-hub did not stop in timely fashion');
 				} catch(e) {					
-					console.log('bitdog-hub stopped');
+					console.log('bitdog-hub has stopped');
    				    fs.unlinkSync(pidFile);
 					return;
 				}
