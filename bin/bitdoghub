@@ -76,7 +76,15 @@ program
 		}; 
 
 		try {
-			fs.accessSync(pidFile, fs.F_OK);
+
+			try
+			{
+				fs.accessSync(pidFile, fs.F_OK);
+			}
+			catch(e) {
+				console.log('Process id file not found, bitdog-hub may not be running');
+				return;
+			}
 
 			var pid = fs.readFileSync(pidFile);
 			var pidId = parseInt(pid);
