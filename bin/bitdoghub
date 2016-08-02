@@ -48,11 +48,7 @@ program
      // spawn the child using the same node process as ours 
      var child = child_process.spawn('node', [packageFilePath], cp_opt); 
 	 
-	 fs.writeFileSync(pidFile, child.pid, function(err) {
-		if(err) {
-			return console.log(err);
-		}
-	 }); 
+	 fs.writeFileSync(pidFile, child.pid);
 	 	
      console.log('Started process ' + pid);
 
