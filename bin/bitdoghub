@@ -50,7 +50,7 @@ program
 	 
 	 fs.writeFileSync(pidFile, child.pid);
 	 	
-     console.log('Started process ' + pid);
+     console.log('Bitdog Hub started');
 
      // required so the parent can exit 
      child.unref(); 
