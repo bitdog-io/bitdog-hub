@@ -70,11 +70,19 @@ program
 				setTimeout(function() {
 					try
 					{
-						child_process.execSync('kill -s 0 ' + pidId);
+						opt = { 
+							stdio: ['ignore', 'ignore' , 'ignore'], 
+							env: process.env, 
+							cwd: process.cwd, 
+							shell: '/bin/bash'
+						}; 
+
+						child_process.execSync('kill -s 0 ' + pidId, opt);
 						console.log('bitdog-hub started');
 
 					} catch(e) {					
-						console.log('bitdog-hub has failed to start properly');
+						console.log('bitdog-hub has failed to start properly, pid:' + pidId);
+						console.log(JSON.stringify(e));
    						fs.unlinkSync(pidFile);
 					}
 
@@ -120,7 +128,14 @@ program
 			setTimeout(function() {
 				try
 				{
-					child_process.execSync('kill -s 0 ' + pidId);
+					var opt = { 
+						 stdio: ['ignore', 'ignore' , 'ignore'], 
+						 env: process.env, 
+						 cwd: process.cwd, 
+						 shell: '/bin/bash'
+					}; 
+
+					child_process.execSync('kill -s 0 ' + pidId, opt);
 					console.log('bitdog-hub did not stop in timely fashion');
 
 				} catch(e) {					
