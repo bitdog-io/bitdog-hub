@@ -106,6 +106,7 @@ program
 			catch(e) {
 				console.log('Process id file not found, bitdog-hub may not be running');
 				process.exitCode = 1;
+				return;
 			}
 
 			var pid = fs.readFileSync(pidFile);
