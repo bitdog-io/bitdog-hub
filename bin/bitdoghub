@@ -37,7 +37,7 @@ program
 		var packageFilePath = path.resolve(__dirname, '../');
 		var pidFile = path.resolve(__dirname,'pid.txt');
 
-		var cp_opt = { 
+		var opt = { 
 			 stdio: ['ignore', 'ignore' , 'ignore'], 
 			 env: process.env, 
 			 cwd: process.cwd, 
@@ -46,7 +46,7 @@ program
  
  
      // spawn the child using the same node process as ours 
-     var child = child_process.spawn('node', [packageFilePath], cp_opt); 
+     var child = child_process.spawn('node', [packageFilePath], opt); 
 	 
 	 fs.writeFileSync(pidFile, child.pid);
 	 	
@@ -69,11 +69,10 @@ program
 		var packageFilePath = path.resolve(__dirname, '../');
 		var pidFile = path.resolve(__dirname,'pid.txt');
 
-		var cp_opt = { 
+		var opt = { 
 			 stdio: ['ignore', 'ignore' , 'ignore'], 
 			 env: process.env, 
 			 cwd: process.cwd, 
-			 detached: false 
 		}; 
 
 		try {
@@ -88,7 +87,7 @@ program
 			setTimeout(function() {
 				try
 				{
-					child_process.execSync('kill -s 0 ' + pidId,[], cp_opt);
+					child_process.execSync('kill -s 0 ' + pidId,[], opt);
 					console.log('bitdog-hub did not stop in timely fashion');
 				} catch(e) {					
 					console.log('bitdog-hub has stopped');
