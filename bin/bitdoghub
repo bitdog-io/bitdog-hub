@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 var process = require('process');
+process.chdir(__dirname);
+
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
 
-process.chdir(__dirname);
 
 program
     .version('0.0.50');
