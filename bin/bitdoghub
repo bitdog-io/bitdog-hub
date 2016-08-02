@@ -38,7 +38,7 @@ program
 			var rl = readline.createInterface(process.stdin, process.stdout);
 			rl.question("This bitdog-hub is not registered, try automatic registration? (y/n)", function(answer) {
 				rl.close();
-				if(anwser === 'y')
+				if(answer === 'y')
 					start();
 			});
 
