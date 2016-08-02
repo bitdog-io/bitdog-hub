@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var path = require('path');
 var process = require('process');
-process.chdir(path.resolve(path.dirname(__filename),'../../');
+process.chdir(path.resolve(path.dirname(__filename),'../../'));
 
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
