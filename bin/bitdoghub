@@ -80,7 +80,7 @@ program
 						console.log('bitdog-hub started');
 
 					} catch(e) {					
-						console.log('bitdog-hub has failed to start properly');
+						console.log('bitdog-hub has failed to start properly, pid:' + pidId);
    						fs.unlinkSync(pidFile);
 					}
 
