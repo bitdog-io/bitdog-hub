@@ -23,6 +23,7 @@
     "bitdog-client": "git+https://github.com/bitdog-io/bitdog-client.git",
     "commander": "^2.9.0",
     "openzwave-shared": "git+https://github.com/OpenZWave/node-openzwave-shared.git",
-    "tingodb": "^0.4.2"
+    "tingodb": "^0.4.2",
+    "rpio": "^0.9.11"
   }
 }
