@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 var path = require('path');
-var process = require('process');
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
 
