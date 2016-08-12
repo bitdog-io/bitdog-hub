@@ -19,7 +19,7 @@ bitdogClient.addCommand('Turn local LED on/off', bitdogClient.commonMessageSchem
 //});
 
 process.on('SIGINT', function () {
-    bitdogClient.logger.logProcessEvent('Example Bitdog Hub', 'SIGINT, stopping.');
+    bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
     bitdogHub.stop();
     setTimeout(function () { process.exit(0); }, 5000);
 });

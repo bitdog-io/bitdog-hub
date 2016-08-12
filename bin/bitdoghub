@@ -4,7 +4,7 @@ var program = require('commander');
 var bitdogClient = require('bitdog-client');
 
 program
-    .version('0.0.50');
+    .version('0.0.52');
 	 
 program.command('register')
     .description('Register this hub with Bitdog Cloud.')
@@ -31,6 +31,10 @@ program.command('register')
 program
     .command('start')
     .description('Start Bitdog Hub.')
+	.option('-l,--logpath <log directory path>', 'The path for log files.')
+    .option('-c,--configpath <config file path>', 'The path for configuration files.')
+	.option('-t,--tail', 'Write logs to console also.')
+
     .action(function (options) {
 		if(bitdogClient.configuration.isRegistered === false) {
 			var readline = require('readline');

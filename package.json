@@ -1,16 +1,16 @@
 {
   "name": "bitdog-hub",
-  "version": "0.0.51",
+  "version": "0.0.52",
   "description": "Bitdog Home Security and Automation",
   "keywords": "iot z-wave raspberry pi home automation sensor",
-  "main": "./examples/example.js",
+  "main": "main.js",
   "author": {
     "name": "Bitdog LLC",
     "email": "vjm@bitdog.io"
   },
   "license": "GPL-3.0",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,9 @@
     "bitdog-client": "git+https://github.com/bitdog-io/bitdog-client.git",
     "commander": "^2.9.0",
     "openzwave-shared": "git+https://github.com/OpenZWave/node-openzwave-shared.git",
-    "tingodb": "^0.4.2",
-    "rpio": "^0.9.11"
+    "tingodb": "^0.4.2"
+  },
+  "optionalDependencies": {
+    "rpio": "0.9.11"
   }
 }
