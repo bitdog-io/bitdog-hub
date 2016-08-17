@@ -61,6 +61,9 @@ program
 					cwd: process.cwd, 
 					detached: true 
 				}; 
+
+				if(typeof options.tail !== typeof undefined)
+					packageFilePath += ' --tail';
  
 				var child = child_process.spawn('node', [packageFilePath], opt); 
 				var pidId = child.pid;
