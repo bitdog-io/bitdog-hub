@@ -68,6 +68,9 @@ program
 				if(typeof options.tail !== typeof undefined) {
 					args.push('--tail');
 					console.log("Logging to console...");
+				} else
+				{
+					console.log("Logging to " + bitdogClient.configuration.logFilePath);
 				}
  
 				var child = child_process.spawn('node', args, opt); 
