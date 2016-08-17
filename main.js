@@ -15,24 +15,23 @@ process.on('uncaughtException', function (ex) {
 });
 
 program
-    .version('0.0.52');
+    .version('0.0.52')
     .description('Bitdog Hub')
-	.option('-l,--logpath <log directory path>', 'The path for log files.')
-    .option('-c,--configpath <config file path>', 'The path for configuration files.')
-	.option('-t,--tail', 'Write logs to console also.')
-    .action(function (options) {
-
-        bitdogHub.start();
-
-    });
+    .option('-l,--logpath <log directory path>', 'The direcotry for log files.')
+    .option('-c,--configpath <config directory path>', 'The directory for configuration files.')
+    .option('-t,--tail', 'Write logs to console also.');
+ 
 
 program.parse(process.argv);
 
-if (!process.argv.slice(2).length) {
-    program.outputHelp();
-    process.exitCode = 1;
-
+if (typeof program.tail === typeof undefined) {
+    bitdogClient.configuration.logToConsole = false;
+} else {
+    bitdogClient.configuration.logToConsole = true;
 }
+
+bitdogHub.start();
+
 
 
 
