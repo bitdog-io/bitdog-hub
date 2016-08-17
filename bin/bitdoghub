@@ -54,6 +54,7 @@ program
 			var child_process = require('child_process');
 			var packageFilePath = path.resolve(__dirname, '../');
 			var pidFile = path.resolve(__dirname,'pid.txt');
+			var args = [];
 
 			var opt = { 
 					stdio: 'inherit', 
@@ -62,12 +63,12 @@ program
 					detached: true 
 				}; 
 
-				console.log(JSON.stringify(options));
+				args.push(packageFilePath);
 
 				if(typeof options.tail !== typeof undefined)
-					packageFilePath += ' --tail';
+					args.push('--tail');
  
-				var child = child_process.spawn('node', [packageFilePath], opt); 
+				var child = child_process.spawn('node', args, opt); 
 				var pidId = child.pid;
 				
 				// required so the parent can exit 
