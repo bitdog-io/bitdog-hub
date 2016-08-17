@@ -65,12 +65,9 @@ program
 
 				args.push(packageFilePath);
 
-				if(options.tail === true) {
+				if(options.tail) {
 					args.push('--tail');
-					console.log("Logging to console");
-				} else
-				{
-					console.log("Logging to " + bitdogClient.configuration.logFilePath);
+					console.log("Tailing log to console");
 				}
 
 				if(options.configpath) {
@@ -78,8 +75,14 @@ program
 					args.push(options.configpath);
 
 				}
+
+				if(options.logpath) {
+					args.push('--logpath');
+					args.push(options.logpath);
+				}
  				
 				console.log("Configuration file path is " + bitdogClient.configuration.configFilePath);
+				console.log("Logging to " + bitdogClient.configuration.logFilePath);
 
 				var child = child_process.spawn('node', args, opt); 
 				var pidId = child.pid;
