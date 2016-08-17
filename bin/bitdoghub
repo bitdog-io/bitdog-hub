@@ -70,7 +70,6 @@ program
 					console.log("Logging to console...");
 				} else
 				{
-					conosle.log(options.tail);
 					console.log("Logging to " + bitdogClient.configuration.logFilePath);
 				}
  
