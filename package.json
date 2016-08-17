@@ -3,7 +3,7 @@
   "version": "0.0.52",
   "description": "Bitdog Home Security and Automation",
   "keywords": "iot z-wave raspberry pi home automation sensor",
-  "main": "./examples/example.js",
+  "main": "./main.js",
   "author": {
     "name": "Bitdog LLC",
     "email": "vjm@bitdog.io"
