@@ -56,7 +56,7 @@ program
 			var pidFile = path.resolve(__dirname,'pid.txt');
 
 			var opt = { 
-					stdio: ['ignore', 'ignore' , 'ignore'], 
+					stdio: 'inherit', 
 					env: process.env, 
 					cwd: process.cwd, 
 					detached: true 
