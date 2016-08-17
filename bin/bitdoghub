@@ -65,11 +65,12 @@ program
 
 				args.push(packageFilePath);
 
-				if(typeof options.tail !== typeof undefined && typeof options.t !== typeof undefined) {
+				if(options.tail === true) {
 					args.push('--tail');
 					console.log("Logging to console...");
 				} else
 				{
+					conosle.log(options.tail);
 					console.log("Logging to " + bitdogClient.configuration.logFilePath);
 				}
  
@@ -156,6 +157,7 @@ program
     });
 
 program.parse(process.argv);
+console.log(JSON.stringify(process.argv));
 
 if (!process.argv.slice(2).length) {
     program.outputHelp();
