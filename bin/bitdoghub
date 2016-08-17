@@ -67,12 +67,20 @@ program
 
 				if(options.tail === true) {
 					args.push('--tail');
-					console.log("Logging to console...");
+					console.log("Logging to console");
 				} else
 				{
 					console.log("Logging to " + bitdogClient.configuration.logFilePath);
 				}
- 
+
+				if(options.configpath) {
+					args.push('--configpath');
+					args.push(options.configpath);
+
+				}
+ 				
+				console.log("Configuration file path is " + bitdogClient.configuration.configFilePath);
+
 				var child = child_process.spawn('node', args, opt); 
 				var pidId = child.pid;
 				
@@ -156,7 +164,6 @@ program
     });
 
 program.parse(process.argv);
-console.log(JSON.stringify(process.argv));
 
 if (!process.argv.slice(2).length) {
     program.outputHelp();
