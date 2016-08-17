@@ -65,8 +65,10 @@ program
 
 				args.push(packageFilePath);
 
-				if(typeof options.tail !== typeof undefined)
+				if(typeof options.tail !== typeof undefined) {
 					args.push('--tail');
+					console.log("Logging to console...");
+				}
  
 				var child = child_process.spawn('node', args, opt); 
 				var pidId = child.pid;
