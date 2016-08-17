@@ -42,14 +42,14 @@ program
 			rl.question("This bitdog-hub is not registered, try automatic registration? (y/n) ", function(answer) {
 				rl.close();
 				if(answer === 'y')
-					start();
+					start(options);
 			});
 
 		} else {
-			start();
+			start(options);
 		}
 	 
-		function start() {
+		function start(options) {
 			var fs = require('fs');
 			var child_process = require('child_process');
 			var packageFilePath = path.resolve(__dirname, '../');
