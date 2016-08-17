@@ -35,7 +35,7 @@ program
     .option('-c,--configpath <config file path>', 'The path for configuration files.')
 	.option('-t,--tail', 'Write logs to console also.')
 
-    .action(function (options) {
+    .action(function (cmd, options) {
 		if(bitdogClient.configuration.isRegistered === false) {
 			var readline = require('readline');
 			var rl = readline.createInterface(process.stdin, process.stdout);
