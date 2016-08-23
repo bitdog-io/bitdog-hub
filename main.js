@@ -34,7 +34,7 @@ if (typeof program.logpath !== typeof undefined) {
     bitdogClient.configuration.logpath = program.logpath;
 }
 
-for (var item in program)
+for (var item in ['tail','logpath'])
     console.log(item + ' ' + program[item]);
 
 console.log("Configuration file path is " + bitdogClient.configuration.configFilePath);
