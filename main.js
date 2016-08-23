@@ -30,6 +30,10 @@ if (typeof program.tail === typeof undefined) {
     bitdogClient.configuration.logToConsole = true;
 }
 
+if (typeof program.logpath !== typeof undefined) {
+    bitdogClient.configuration.logpath = true;
+}
+
 bitdogHub.start();
 
 
