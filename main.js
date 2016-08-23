@@ -1,6 +1,8 @@
 ﻿var bitdogHub = require('./lib/bitdogHub.js');
 var bitdogClient = require('bitdog-client');
 var program = require('commander');
+var path = require('path');
+
 
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
@@ -31,11 +33,10 @@ if (typeof program.tail === typeof undefined) {
 }
 
 if (typeof program.logpath !== typeof undefined) {
-    bitdogClient.configuration.logpath = program.logpath;
+    var logFilePath = path.resolve(program.logpath, bitdogClient.constants.LOG_FILE_NAME);
+    bitdogClient.configuration.logFilePath = logFilePath;
 }
 
-    console.log('tail ' + program['tail']);
-    console.log('logpath ' + program['logpath']);
 
 console.log("Configuration file path is " + bitdogClient.configuration.configFilePath);
 console.log("Logging to " + bitdogClient.configuration.logFilePath);
