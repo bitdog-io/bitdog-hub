@@ -81,9 +81,6 @@ program
 					args.push(options.logpath);
 				}
  				
-				console.log("Configuration file path is " + bitdogClient.configuration.configFilePath);
-				console.log("Logging to " + bitdogClient.configuration.logFilePath);
-
 				var child = child_process.spawn('node', args, opt); 
 				var pidId = child.pid;
 				

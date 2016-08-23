@@ -31,8 +31,11 @@ if (typeof program.tail === typeof undefined) {
 }
 
 if (typeof program.logpath !== typeof undefined) {
-    bitdogClient.configuration.logpath = true;
+    bitdogClient.configuration.logpath = program.logpath;
 }
+
+console.log("Configuration file path is " + bitdogClient.configuration.configFilePath);
+console.log("Logging to " + bitdogClient.configuration.logFilePath);
 
 bitdogHub.start();
 
