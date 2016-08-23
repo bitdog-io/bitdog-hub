@@ -77,7 +77,8 @@ program
 				}
 
 				if(options.logpath) {
-					args.push('--logpath ' + options.logpath);
+					args.push('--logpath');
+					args.push(options.logpath);
 				}
  				
 				var child = child_process.spawn('node', args, opt); 
