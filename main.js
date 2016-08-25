@@ -20,6 +20,7 @@ program
     .option('-l,--logpath <log directory path>', 'The direcotry for log files.')
     .option('-c,--configpath <config directory path>', 'The directory for configuration files.')
     .option('-t,--tail', 'Write logs to console also.');
+    .option('-e,--extension <extension file path>','Path to file that has extension code.') 
  
 
 program.parse(process.argv);
@@ -35,11 +36,20 @@ if (typeof program.logpath !== typeof undefined) {
     bitdogClient.configuration.logFilePath = logFilePath;
 }
 
-
 console.log("Configuration file path is " + bitdogClient.configuration.configFilePath);
 console.log("Logging to " + bitdogClient.configuration.logFilePath);
 
-bitdogHub.start();
+
+if (typeof program.extension !== typeof undefined) {
+    var extensionFilePath = path.resolve(program.extension);
+    var Extension = require(extensionFilePath);
+    var extension = new Extension(bitdogHub);
+
+} else {
+    bitdogHub.start();
+}
+
+
 
 
 
