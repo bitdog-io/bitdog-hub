@@ -10,7 +10,7 @@ function Extension(bitdogHub) {
         .addNumberProperty('longitude', -78.9055923);
 
 
-    bitdogHub.addCommand('Turn LED on/off', onOffmessageSchema, function (message, configuration, logger) {
+    bitdogHub.addCommand('Turn LED on-off', onOffmessageSchema, function (message, configuration, logger) {
 
         // Every time this command is received, we will simply log the fact
         logger.log('User', 'Turn LED  ' + message.value);
