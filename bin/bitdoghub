@@ -34,7 +34,7 @@ program
 	.option('-l,--logpath <log directory path>', 'The path for log files.')
     .option('-c,--configpath <config file path>', 'The path for configuration files.')
 	.option('-t,--tail', 'Write logs to console also.')
-	.option('-e,--extension <extension file path>', 'Path to file that has extension code.'); 
+	.option('-e,--extension <extension file path>', 'Path to file that has extension code.')
 
 
     .action(function (options) {
