@@ -11,9 +11,7 @@ process.on('SIGINT', function () {
 });
 
 process.on('uncaughtException', function (ex) {
-    bitdogClient.logger.logProcessEvent('Unhandled exception, stopping.', ex);
-    setTimeout(function () { process.exit(1); }, 5000);
-
+    bitdogClient.logger.logProcessEvent('Unhandled exception', ex);
 });
 
 program
