@@ -2,7 +2,7 @@
 
 function Extension(bitdogHub) {
 
-    var onOffmessageSchema = bitdogHub.createMessageSchema('OnOff')
+    var onOffMessageSchema = bitdogHub.createMessageSchema('OnOff')
         .addStringProperty('value', 'off', { values: ['on', 'off'] });
 
     var positionMessageSchema = bitdogHub.createMessageSchema('Position')
@@ -10,7 +10,7 @@ function Extension(bitdogHub) {
         .addNumberProperty('longitude', -78.9055923);
 
 
-    bitdogHub.addCommand('Turn LED on-off', onOffmessageSchema, function (message, configuration, logger) {
+    bitdogHub.addCommand('Turn LED on-off', onOffMessageSchema, function (message, configuration, logger) {
 
         // Every time this command is received, we will simply log the fact
         logger.log('User', 'Turn LED  ' + message.value);
@@ -23,6 +23,12 @@ function Extension(bitdogHub) {
         // for this test
         message.latitude = Math.floor((Math.random() * 100) + 1);
         message.longitude = Math.floor((Math.random() * 100) + 1);
+
+    });
+
+    bitdogHub.on('message', function (message, configuration, logger) {
+        // Messages will go through here, check them and do something.
+        logger.log('User', 'Got message and handling', message);
 
     });
 
