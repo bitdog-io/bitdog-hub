@@ -2,14 +2,22 @@
 
 function Extension(bitdogHub) {
 
-    bitdogHub.bitdogClient.addCommand('Turn local LED on/off', bitdogHub.bitdogClient.commonMessageSchemas.onOffMessageSchema, function (message, configuration, logger) {
+    var onOffmessageSchema = bitdog.createMessageSchema(constants.MESSAGE_SCHEMA_ON_OFF)
+        .addStringProperty('value', 'off', { values: ['on', 'off'] });
+
+    var positionMessageSchema = bitdog.createMessageSchema(constants.MESSAGE_SCHEMA_MAP_POSITION)
+        .addNumberProperty('latitude', 42.9069)
+        .addNumberProperty('longitude', -78.9055923);
+
+
+    bitdogHub.addCommand('Turn local LED on/off', onOffmessageSchema, function (message, configuration, logger) {
 
         // Every time this command is received, we will simply log the fact
         logger.log('User', 'Turn local LED on/off - ' + message.value);
 
     });
 
-    bitdogHub.bitdogClient.addDataCollector('Position', bitdogHub.bitdogClient.commonMessageSchemas.mapPositionMessageSchema , 60000, function (message, configuration, logger) {
+    bitdogHub.addDataCollector('Position', positionMessageSchema , 60000, function (message, configuration, logger) {
 
         // Instead of collecting real data, we are just sending random data
         // for this test

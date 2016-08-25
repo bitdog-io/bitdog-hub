@@ -42,6 +42,8 @@ console.log("Logging to " + bitdogClient.configuration.logFilePath);
 
 if (typeof program.extension !== typeof undefined) {
     var extensionFilePath = path.resolve(program.extension);
+    console.log("Loading extension at " + extensionFilePath);
+
     var Extension = require(extensionFilePath);
     var extension = new Extension(bitdogHub);
 
