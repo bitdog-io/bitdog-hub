@@ -19,8 +19,8 @@ program
     .description('Bitdog Hub')
     .option('-l,--logpath <log directory path>', 'The direcotry for log files.')
     .option('-c,--configpath <config directory path>', 'The directory for configuration files.')
-    .option('-t,--tail', 'Write logs to console also.');
-    .option('-e,--extension <extension file path>','Path to file that has extension code.') 
+    .option('-t,--tail', 'Write logs to console also.')
+    .option('-e,--extension <extension file path>', 'Path to file that has extension code.'); 
  
 
 program.parse(process.argv);
