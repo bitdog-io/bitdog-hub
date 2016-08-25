@@ -2,10 +2,10 @@
 
 function Extension(bitdogHub) {
 
-    var onOffmessageSchema = bitdog.createMessageSchema(constants.MESSAGE_SCHEMA_ON_OFF)
+    var onOffmessageSchema = bitdogHub.createMessageSchema(constants.MESSAGE_SCHEMA_ON_OFF)
         .addStringProperty('value', 'off', { values: ['on', 'off'] });
 
-    var positionMessageSchema = bitdog.createMessageSchema(constants.MESSAGE_SCHEMA_MAP_POSITION)
+    var positionMessageSchema = bitdogHub.createMessageSchema(constants.MESSAGE_SCHEMA_MAP_POSITION)
         .addNumberProperty('latitude', 42.9069)
         .addNumberProperty('longitude', -78.9055923);
 
