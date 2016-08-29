@@ -82,3 +82,5 @@ obj
 /BitdogSA.VC.VC.opendb
 *.db
 
+/typings/globals/commander/index.d.ts
+/typings/globals/node/typings.json
