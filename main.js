@@ -2,7 +2,6 @@
 var bitdogClient = require('bitdog-client');
 var program = require('commander');
 var path = require('path');
-var util = require('util');
 
 
 process.on('SIGINT', function () {

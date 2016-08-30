@@ -1,5 +1,7 @@
-﻿var rpio = require('rpio');
-var ExtensionBase = require('../lib/extensionBase.js');
+﻿var ExtensionBase = require('../lib/extensionBase.js');
+var util = require('util');
+
+var rpio = require('rpio');
 
 
 function Extension() {
