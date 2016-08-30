@@ -2,6 +2,7 @@
 var bitdogClient = require('bitdog-client');
 var program = require('commander');
 var path = require('path');
+var util = require('util');
 
 
 process.on('SIGINT', function () {
@@ -45,6 +46,10 @@ if (typeof program.extension !== typeof undefined) {
     console.log("Loading extension at " + extensionFilePath);
 
     var Extension = require(extensionFilePath);
+    var ExtensionBase = require('./lib/extensionBase.js');
+
+    util.inherits(BitdogHub, ExtensionBase);
+
     var extension = new Extension(bitdogHub);
 
 } else {
