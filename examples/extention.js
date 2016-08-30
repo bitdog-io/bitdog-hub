@@ -22,25 +22,31 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     var onOffMessageSchema = this.createMessageSchema('OnOff')
         .addStringProperty('value', 'off', { values: ['on', 'off'] });
 
-    var positionMessageSchema = this.createMessageSchema('Position')
-        .addNumberProperty('latitude', 42.9069)
-        .addNumberProperty('longitude', -78.9055923);
+    var state = 'off';
+
+    rpio.open(12, rpio.OUTPUT, rpio.LOW);
+    rpio.open(15, rpio.INPUT, rpio.PULL_DOWN);
+
+    function pollcb(pin) {
+
+        state = rpio.read(pin) ? 'on' : 'off';
+    }
+
+    rpio.poll(15, pollcb);
 
 
-    this.addCommand('Turn LED on-off', onOffMessageSchema, function (message, configuration, logger) {
+    this.addCommand('Turn LED on/off', onOffMessageSchema, function (message, configuration, logger) {
 
-        // Every time this command is received, we will simply log the fact
-        logger.log('User', 'Turn LED  ' + message.value);
-
+        if (message.value === 'off') {
+            rpio.write(12, rpio.HIGH);
+        } else {
+            rpio.write(12, rpio.LOW);
+        }
+        
     });
 
-    this.addDataCollector('Position', positionMessageSchema, 60000, function (message, configuration, logger) {
-
-        // Instead of collecting real data, we are just sending random data
-        // for this test
-        message.latitude = Math.floor((Math.random() * 100) + 1);
-        message.longitude = Math.floor((Math.random() * 100) + 1);
-
+    this.addDataCollector('Switch Status', onOffMessageSchema, 60000, function (message, configuration, logger) {
+        message.value = state;
     });
 };
 
