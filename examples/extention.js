@@ -5,7 +5,6 @@ function Extension() {
 }
 
 Extension.prototype.onMessage = function (message, configuration, logger) {
-    console.log("method called - onMessage")
 
     // Messages will go through here, check them and do something.
     logger.log('User', 'Got message and handling', message);
