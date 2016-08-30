@@ -46,9 +46,6 @@ if (typeof program.extension !== typeof undefined) {
     console.log("Loading extension at " + extensionFilePath);
 
     var Extension = require(extensionFilePath);
-    var ExtensionBase = require('./lib/extensionBase.js');
-
-    util.inherits(Extension, ExtensionBase);
 
     var extension = new Extension();
     extension.bitdogHub = bitdogHub;

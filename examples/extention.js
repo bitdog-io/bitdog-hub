@@ -1,8 +1,13 @@
 ﻿var rpio = require('rpio');
+var ExtensionBase = require('../lib/extensionBase.js');
+
 
 function Extension() {
 
 }
+
+util.inherits(Extension, ExtensionBase);
+
 
 Extension.prototype.onMessage = function (message, configuration, logger) {
 
