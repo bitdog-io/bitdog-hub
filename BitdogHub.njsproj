@@ -31,7 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="examples\extention.js" />
+    <Compile Include="examples\extension.js" />
     <Compile Include="lib\alarm\alarmMode.js" />
     <Compile Include="lib\alarm\bitdogAlarm.js" />
     <Compile Include="lib\alarm\zone.js" />
