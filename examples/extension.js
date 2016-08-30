@@ -12,8 +12,8 @@ var rpio = require('rpio');
 // need to be a member of the gpio group, 
 // and you may need to configure udev with the following rule (as root):
 
-//$ cat > /etc/udev / rules.d / 20 - gpiomem.rules << EOF
-//SUBSYSTEM == "bcm2835-gpiomem", KERNEL == "gpiomem", GROUP = "gpio", MODE = "0660"
+//$ cat >/etc/udev/rules.d/20-gpiomem.rules << EOF
+//SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="gpio", MODE="0660"
 //EOF
 
 // Create a class called Extension
