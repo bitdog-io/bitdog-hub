@@ -2,7 +2,7 @@
 
 function Extension() {
 
-    this.onInitialize = function () {
+    this.onInitialize = function (configuration, logger) {
         var onOffMessageSchema = this.createMessageSchema('OnOff')
             .addStringProperty('value', 'off', { values: ['on', 'off'] });
 

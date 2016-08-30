@@ -52,7 +52,7 @@ if (typeof program.extension !== typeof undefined) {
 
     var extension = new Extension();
     extension.bitdogHub = bitdogHub;
-    extension.onInitialize();
+    extension.onInitialize(bitdogClient.configuration, bitdogClient.logger);
 
     bitdogHub.start();
 
