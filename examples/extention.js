@@ -3,8 +3,18 @@
 var ExtensionBase = require('../lib/extensionBase.js');
 var util = require('util');
 
-// Example Raspberry PI I/O library 
+// Example Raspberry PI I/O library
 var rpio = require('rpio');
+
+// By default the rpio module will use /dev/gpiomem 
+// when using simple GPIO access. 
+// To access this device, your user will 
+// need to be a member of the gpio group, 
+// and you may need to configure udev with the following rule (as root):
+
+//$ cat > /etc/udev / rules.d / 20 - gpiomem.rules << EOF
+//SUBSYSTEM == "bcm2835-gpiomem", KERNEL == "gpiomem", GROUP = "gpio", MODE = "0660"
+//EOF
 
 // Create a class called Extension
 // This can be any name, give it a good one.
@@ -57,7 +67,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     }
 
     // The the rpio library to poll our callback function every 15 milliseconds
-    // Just an example way to do it.
+    // Just an example way to do it. First way
     rpio.poll(15, pollcb);
 
     // Add a command to this hub that turns the LED on and off
@@ -73,8 +83,8 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         
     });
 
-    // Register data collector and set it to poll every 60 seconds
-    // Set seconds to -1 to not poll at all.
+    // Register data collector and set it to poll every 60 seconds. Second way
+    // Set seconds to -1 to not poll at all. 
     this.addDataCollector('Switch Status', onOffMessageSchema, 60000, function (message, configuration, logger) {
         message.value = self.buttonState;
     });
