@@ -31,7 +31,8 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="examples\extension.js" />
+    <Compile Include="examples\mp3Extension.js" />
+    <Compile Include="examples\rpioExtension.js" />
     <Compile Include="lib\alarm\alarmMode.js" />
     <Compile Include="lib\alarm\bitdogAlarm.js" />
     <Compile Include="lib\alarm\zone.js" />
@@ -52,10 +53,12 @@
     <Compile Include="lib\zwave\zwaveValue.js" />
     <Content Include=".npmignore" />
     <Content Include="database\README.md" />
+    <Content Include="examples\mp3\Ringing-clock.mp3" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="examples\mp3\" />
     <Folder Include="lib\" />
     <Folder Include="bin\" />
     <Folder Include="lib\alarm\" />
