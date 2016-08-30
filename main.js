@@ -51,7 +51,7 @@ if (typeof program.extension !== typeof undefined) {
     util.inherits(Extension, ExtensionBase);
 
     var extension = new Extension();
-    extension.bitdogHub = bitdogHub();
+    extension.bitdogHub = bitdogHub;
     extension.onInitialize();
 
     bitdogHub.start();
