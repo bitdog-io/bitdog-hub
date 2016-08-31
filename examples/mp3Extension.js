@@ -26,7 +26,7 @@ Extension.prototype.onMessage = function (message, configuration, logger) {
 // Setup command and data capture here.
 Extension.prototype.onInitialize = function (configuration, logger) {
     var self = this;
-    var filePath = path.resolve(__dirname, './mp3');
+    var filePath = path.resolve(path.dirname(__filename), './mp3');
     var files = fs.readdirSync(filePath);
 
     // Create a custom message schema with one string property.
