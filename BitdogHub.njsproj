@@ -54,6 +54,7 @@
     <Compile Include="lib\zwave\zwaveValue.js" />
     <Content Include=".npmignore" />
     <Content Include="database\README.md" />
+    <Content Include="examples\mp3\RedAlert.mp3" />
     <Content Include="examples\mp3\Ringing-clock.mp3" />
     <Content Include="package.json" />
     <Content Include="README.md" />
