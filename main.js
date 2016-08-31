@@ -52,7 +52,7 @@ if (typeof program.extension !== typeof undefined) {
 
         extension.onInitialize(bitdogClient.configuration, bitdogClient.logger);
 
-        bitdogClient.configuration.save(constants.EXTENSION_PATHS, [extensionFilePath]);
+        bitdogClient.configuration.set(constants.EXTENSION_PATHS, [extensionFilePath]);
     }
     catch (exception) {
         bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ', exception);
