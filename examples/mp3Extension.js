@@ -27,11 +27,13 @@ Extension.prototype.onMessage = function (message, configuration, logger) {
 Extension.prototype.onInitialize = function (configuration, logger) {
     var self = this;
     var filePath = path.resolve(path.dirname(__filename), './mp3');
+    logger.logProcessEvent('mp3Extension', 'Loading files from file path', filePath);
     var files = fs.readdirSync(filePath);
+    logger.logProcessEvent('mp3Extension', 'Found files', files);
 
     // Create a custom message schema with one string property.
     var playMessageSchema = this.createMessageSchema('Play')
-        .addStringProperty('sound', '', files);
+        .addStringProperty('sound', '', { values: files });
 
 
     // Add a command to this hub that plays sound
