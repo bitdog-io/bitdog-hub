@@ -44,13 +44,19 @@ if (typeof program.extension !== typeof undefined) {
     var extensionFilePath = path.resolve(program.extension);
     console.log("Loading extension at " + extensionFilePath);
 
-    var Extension = require(extensionFilePath);
+    try {
+        var Extension = require(extensionFilePath);
 
-    var extension = new Extension();
-    extension.bitdogHub = bitdogHub;
-    extension.onInitialize(bitdogClient.configuration, bitdogClient.logger);
+        var extension = new Extension();
+        extension.bitdogHub = bitdogHub;
 
-    bitdogClient.configuration.save(constants.EXTENSION_PATHS, [extensionFilePath]);
+        extension.onInitialize(bitdogClient.configuration, bitdogClient.logger);
+
+        bitdogClient.configuration.save(constants.EXTENSION_PATHS, [extensionFilePath]);
+    }
+    catch (exception) {
+        bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ', exception);
+    }
 
     bitdogHub.start();
 
