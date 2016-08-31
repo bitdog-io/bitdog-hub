@@ -10,8 +10,8 @@ process.on('SIGINT', function () {
     setTimeout(function () { process.exit(0); }, 5000);
 });
 
-process.on('uncaughtException', function (ex) {
-    bitdogClient.logger.logProcessEvent('Bitdog Hub','Unhandled exception', ex);
+process.on('uncaughtException', function (error) {
+    bitdogClient.logger.logProcessEvent('Bitdog Hub','Unhandled exception: ' + error.message + ': ' + error.stack);
 });
 
 program
