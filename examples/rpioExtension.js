@@ -63,7 +63,6 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     function pollcb(pin) {
         // Read the state of the switch pin
         var newState = rpio.read(pin) ? 'on' : 'off';
-        console.log(newState + ' ' + self.buttonState);
 
         // If the switch pin has transitioned to a new value...
         if (newState !== self.buttonState) {
@@ -97,6 +96,10 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     // Register data collector and set it to poll every 60 seconds. Second way
     // Set seconds to -1 to not poll at all. 
     this.addDataCollector('Switch Status', onOffMessageSchema, 60000, function (message, configuration, logger) {
+
+        // Read the state of the switch pin
+        self.buttonState = rpio.read(buttonPin) ? 'on' : 'off';
+
         message.value = self.buttonState;
     });
 };

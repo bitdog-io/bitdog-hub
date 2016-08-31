@@ -1,6 +1,6 @@
 {
   "globalDependencies": {
     "commander": "registry:dt/commander#2.3.0+20160317120654",
-    "node": "registry:dt/node#6.0.0+20160826120425"
+    "node": "registry:dt/node#6.0.0+20160830141956"
   }
 }

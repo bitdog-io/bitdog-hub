@@ -3,6 +3,7 @@ var bitdogClient = require('bitdog-client');
 var program = require('commander');
 var path = require('path');
 var constants = require('./lib/constants.js');
+var saveExtensionPaths = bitdogClient.configuration.get(constants.EXTENSION_PATHS);
 
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
@@ -20,7 +21,7 @@ program
     .option('-l,--logpath <log directory path>', 'The direcotry for log files.')
     .option('-c,--configpath <config directory path>', 'The directory for configuration files.')
     .option('-t,--tail', 'Write logs to console also.')
-    .option('-e,--extension <extension file path>', 'Path to file that has extension code.'); 
+    .option('-e,--extension <extension file path|clear>', 'Path to file that has extension code. Use clear to remote extension from stored configuration.'); 
  
 
 program.parse(process.argv);
@@ -41,7 +42,19 @@ console.log("Logging to " + bitdogClient.configuration.logFilePath);
 
 
 if (typeof program.extension !== typeof undefined) {
-    var extensionFilePath = path.resolve(program.extension);
+
+    if (program.extension === 'clear')
+        bitdogClient.configuration.set(constants.EXTENSION_PATHS, ['']);
+    else
+        loadExtension(path.resolve(program.extension));
+
+} else if (typeof saveExtensionPaths !== typeof undefined && saveExtensionPaths !== null && saveExtensionPaths.length > 0) {
+    loadExtension(saveExtensionPaths[0]);
+} 
+
+bitdogHub.start();
+
+function loadExtension(extensionFilePath) {
     console.log("Loading extension at " + extensionFilePath);
 
     try {
@@ -57,15 +70,7 @@ if (typeof program.extension !== typeof undefined) {
     catch (exception) {
         bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ', exception);
     }
-
-    bitdogHub.start();
-
-} else {
-    bitdogHub.start();
 }
-
-
-
 
 
 
