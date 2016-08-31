@@ -39,6 +39,13 @@ Extension.prototype.onMessage = function (message, configuration, logger) {
 // Setup command and data capture here.
 Extension.prototype.onInitialize = function (configuration, logger) {
     var self = this;
+    var options = {
+        gpiomem: true,          /* Use /dev/gpiomem */
+        mapping: 'physical',    /* Use the P1-P40 numbering scheme */
+    };
+
+    rpio.init(options);
+
 
     // Create a custom message schema with one string property.
     var onOffMessageSchema = this.createMessageSchema('OnOff')
