@@ -70,8 +70,8 @@ Extension.prototype.onInitialize = function (configuration, logger) {
             self.buttonState = newState;
 
             // Send a message to the cloud about our new switch state.
-            this.sendData('Switch Status', onOffMessageSchema, function (message) {
-                message.value = self.buttonState;
+            this.sendIFTTTCommand('API_KEY','Switch Status', function (message) {
+                message.value1 = self.buttonState;
             });
         }
     }
@@ -93,15 +93,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         
     });
 
-    // Register data collector and set it to poll every 60 seconds. Second way
-    // Set seconds to -1 to not poll at all. 
-    this.addDataCollector('Switch Status', onOffMessageSchema, 60000, function (message, configuration, logger) {
 
-        // Read the state of the switch pin
-        self.buttonState = rpio.read(buttonPin) ? 'on' : 'off';
-
-        message.value = self.buttonState;
-    });
 };
 
 // Export your Extension class so it can be loaded by the framework

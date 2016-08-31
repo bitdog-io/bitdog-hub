@@ -21,7 +21,7 @@ program
     .option('-l,--logpath <log directory path>', 'The direcotry for log files.')
     .option('-c,--configpath <config directory path>', 'The directory for configuration files.')
     .option('-t,--tail', 'Write logs to console also.')
-    .option('-e,--extension <extension file path|clear>', 'Path to file that has extension code. Use clear to remote extension from stored configuration.'); 
+    .option('-e,--extension <extension file path | clear>', 'Path to file that has extension code. Use clear to remote extension from stored configuration.'); 
  
 
 program.parse(process.argv);
@@ -44,7 +44,7 @@ console.log("Logging to " + bitdogClient.configuration.logFilePath);
 if (typeof program.extension !== typeof undefined) {
 
     if (program.extension === 'clear')
-        bitdogClient.configuration.set(constants.EXTENSION_PATHS, ['']);
+        bitdogClient.configuration.set(constants.EXTENSION_PATHS, []);
     else
         loadExtension(path.resolve(program.extension));
 
