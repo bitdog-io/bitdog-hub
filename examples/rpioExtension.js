@@ -53,6 +53,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     function pollcb(pin) {
         // Read the state of the switch pin
         var newState = rpio.read(pin) ? 'on' : 'off';
+        console.log(newState + ' ' + self.buttonState);
 
         // If the switch pin has transitioned to a new value...
         if (newState !== self.buttonState) {
@@ -68,7 +69,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 
     // The the rpio library to poll our callback function every 15 milliseconds
     // Just an example way to do it. First way
-    rpio.poll(15, pollcb);
+    rpio.poll(15000, pollcb);
 
     // Add a command to this hub that turns the LED on and off
     this.addCommand('Turn LED on/off', onOffMessageSchema, function (message, configuration, logger) {
