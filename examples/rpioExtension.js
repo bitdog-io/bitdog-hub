@@ -83,10 +83,10 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 
         // If the message contains 'off' set the GPIO pin high - depends on how the LED is wired to the GPIO pins
         if (message.value === 'off') {
-            rpio.write(12, rpio.HIGH);
+            rpio.write(29, rpio.HIGH);
         } else {
             // Or turn on the LED by setting the pin low.
-            rpio.write(12, rpio.LOW);
+            rpio.write(31, rpio.LOW);
         }
         
     });
