@@ -39,6 +39,11 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     // Add a command to this hub that plays sound
     this.addCommand('Play Sound', playMessageSchema, function (message, configuration, logger) {
         var soundToPlay = message.sound;
+        
+        if (typeof soundToPlay !== typeof undefined && soundToPlay !== null && soundToPlay !== '') {
+            var fileToPlay = path.resolve(filePath, soundToPlay);
+            child_process.spawn('omxplayer', [fileToPlay]);
+        }
          
     });
 
