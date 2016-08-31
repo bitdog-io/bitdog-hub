@@ -2,7 +2,7 @@
 var bitdogClient = require('bitdog-client');
 var program = require('commander');
 var path = require('path');
-
+var constants = require('./lib/constants.js');
 
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
@@ -49,6 +49,8 @@ if (typeof program.extension !== typeof undefined) {
     var extension = new Extension();
     extension.bitdogHub = bitdogHub;
     extension.onInitialize(bitdogClient.configuration, bitdogClient.logger);
+
+    bitdogClient.configuration.save(constants.EXTENSION_PATHS, [extensionFilePath]);
 
     bitdogHub.start();
 

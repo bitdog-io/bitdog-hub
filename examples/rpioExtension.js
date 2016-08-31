@@ -40,7 +40,7 @@ Extension.prototype.onMessage = function (message, configuration, logger) {
 Extension.prototype.onInitialize = function (configuration, logger) {
     var self = this;
     var ledPin = 35;
-    var switchPin = 37;
+    var buttonPin = 37;
 
     var options = {
         gpiomem: true,          /* Use /dev/gpiomem */
@@ -57,12 +57,12 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     // Open a GPIO pin for our LED, initialize to off.
     rpio.open(ledPin, rpio.OUTPUT, rpio.LOW);
     // Open a GPIO pin for our switch
-    rpio.open(switchPin, rpio.INPUT, rpio.PULL_DOWN);
+    rpio.open(buttonPin, rpio.INPUT, rpio.PULL_DOWN);
 
     // Create a callback function for the rpio polling routine
-    function pollcb() {
+    function pollcb(pin) {
         // Read the state of the switch pin
-        var newState = rpio.read(switchPin) ? 'on' : 'off';
+        var newState = rpio.read(pin) ? 'on' : 'off';
         console.log(newState + ' ' + self.buttonState);
 
         // If the switch pin has transitioned to a new value...
@@ -77,9 +77,9 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         }
     }
 
-    // The the rpio library to poll our callback function every 15 milliseconds
+    // The the rpio library to poll a pin 
     // Just an example way to do it. First way
-    rpio.poll(15000, pollcb);
+    rpio.poll(buttonPin, pollcb);
 
     // Add a command to this hub that turns the LED on and off
     this.addCommand('Turn LED on/off', onOffMessageSchema, function (message, configuration, logger) {
