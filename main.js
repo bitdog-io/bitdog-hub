@@ -11,7 +11,7 @@ process.on('SIGINT', function () {
 });
 
 process.on('uncaughtException', function (ex) {
-    bitdogClient.logger.logProcessEvent('Unhandled exception', ex);
+    bitdogClient.logger.logProcessEvent('Bitdog Hub','Unhandled exception', ex);
 });
 
 program
