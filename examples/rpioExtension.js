@@ -39,6 +39,9 @@ Extension.prototype.onMessage = function (message, configuration, logger) {
 // Setup command and data capture here.
 Extension.prototype.onInitialize = function (configuration, logger) {
     var self = this;
+    var ledPin = 35;
+    var switchPin = 37;
+
     var options = {
         gpiomem: true,          /* Use /dev/gpiomem */
         mapping: 'physical',    /* Use the P1-P40 numbering scheme */
@@ -52,14 +55,14 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         .addStringProperty('value', 'off', { values: ['on', 'off'] });
 
     // Open a GPIO pin for our LED, initialize to off.
-    rpio.open(35, rpio.OUTPUT, rpio.LOW);
+    rpio.open(ledPin, rpio.OUTPUT, rpio.LOW);
     // Open a GPIO pin for our switch
-    rpio.open(37, rpio.INPUT, rpio.PULL_DOWN);
+    rpio.open(switchPin, rpio.INPUT, rpio.PULL_DOWN);
 
     // Create a callback function for the rpio polling routine
-    function pollcb(pin) {
+    function pollcb() {
         // Read the state of the switch pin
-        var newState = rpio.read(pin) ? 'on' : 'off';
+        var newState = rpio.read(switchPin) ? 'on' : 'off';
         console.log(newState + ' ' + self.buttonState);
 
         // If the switch pin has transitioned to a new value...
@@ -83,10 +86,10 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 
         // If the message contains 'off' set the GPIO pin high - depends on how the LED is wired to the GPIO pins
         if (message.value === 'off') {
-            rpio.write(29, rpio.HIGH);
+            rpio.write(ledPin, rpio.HIGH);
         } else {
             // Or turn on the LED by setting the pin low.
-            rpio.write(31, rpio.LOW);
+            rpio.write(ledPin, rpio.LOW);
         }
         
     });
