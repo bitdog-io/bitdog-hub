@@ -54,7 +54,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     // Open a GPIO pin for our LED, initialize to off.
     rpio.open(12, rpio.OUTPUT, rpio.LOW);
     // Open a GPIO pin for our switch
-    rpio.open(11, rpio.INPUT, rpio.PULL_DOWN);
+    rpio.open(13, rpio.INPUT, rpio.PULL_DOWN);
 
     // Create a callback function for the rpio polling routine
     function pollcb(pin) {
