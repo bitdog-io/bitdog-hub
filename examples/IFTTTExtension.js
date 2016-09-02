@@ -6,6 +6,9 @@ var util = require('util');
 // Example Raspberry PI I/O library
 var rpio = require('rpio');
 
+var API_KEY = '';
+
+
 // By default the rpio module will use /dev/gpiomem 
 // when using simple GPIO access. 
 // To access this device, your user will 
@@ -52,7 +55,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 
     // Create a custom message schema with one string property.
     var onOffMessageSchema = this.createMessageSchema('OnOff')
-        .addStringProperty('value', 'off', { values: ['on', 'off'] });
+        .addStringProperty('value1', 'off', { values: ['on', 'off'] });
 
     // Open a GPIO pin for our LED, initialize to off.
     rpio.open(ledPin, rpio.OUTPUT, rpio.LOW);
@@ -69,8 +72,8 @@ Extension.prototype.onInitialize = function (configuration, logger) {
             // Set the variable 
             self.buttonState = newState;
 
-            // Send a message to the cloud about our new switch state.
-            this.sendIFTTTCommand('API_KEY','Switch Status', function (message) {
+            // Send a message to our IFTTT cloud account about our new switch state.
+            this.sendIFTTTCommand(API_KEY,'Switch Status', function (message) {
                 message.value1 = self.buttonState;
             });
         }
