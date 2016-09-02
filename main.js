@@ -70,7 +70,7 @@ function loadExtension(extensionFilePath) {
         bitdogClient.configuration.set(constants.EXTENSION_PATHS, [extensionFilePath]);
     }
     catch (exception) {
-        bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ', exception.stack);
+        bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ', { message: exception.message, stack: exception.stack } );
     }
 }
 
