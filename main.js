@@ -56,6 +56,8 @@ bitdogHub.start();
 
 function loadExtension(extensionFilePath) {
     console.log("Loading extension at " + extensionFilePath);
+    process.chdir(__dirname);
+    console.log("Setting working directory to " + __dirname);
 
     try {
         var Extension = require(extensionFilePath);
