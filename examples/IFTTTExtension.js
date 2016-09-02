@@ -84,7 +84,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     this.addCommand('Turn LED on/off', onOffMessageSchema, function (message, configuration, logger) {
 
         // If the message contains 'off' set the GPIO pin high - depends on how the LED is wired to the GPIO pins
-        if (message.value === 'off') {
+        if (message.value1 === 'off') {
             rpio.write(ledPin, rpio.HIGH);
         } else {
             // Or turn on the LED by setting the pin low.
