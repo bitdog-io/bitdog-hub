@@ -27,7 +27,7 @@ program
 program.parse(process.argv);
 
 if (typeof program.tail === typeof undefined) {
-    bitdogClient.configuration.logToConsole = false;
+    bitdogClient.configuration.logToConsole = false;  
 } else {
     bitdogClient.configuration.logToConsole = true;
 }
