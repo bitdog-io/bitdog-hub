@@ -55,9 +55,9 @@ if (typeof program.extension !== typeof undefined) {
 bitdogHub.start();
 
 function loadExtension(extensionFilePath) {
-    console.log("Loading extension at " + extensionFilePath);
     process.chdir(__dirname);
     console.log("Setting working directory to " + __dirname);
+    console.log("Loading extension at " + extensionFilePath);
 
     try {
         var Extension = require(extensionFilePath);
