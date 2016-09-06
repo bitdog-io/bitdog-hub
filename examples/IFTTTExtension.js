@@ -7,6 +7,8 @@ var util = require('util');
 var rpio = require('rpio');
 
 var API_KEY = '';
+var ledPin = 35;
+var buttonPin = 37;
 
 
 // By default the rpio module will use /dev/gpiomem 
@@ -42,8 +44,6 @@ Extension.prototype.onMessage = function (message, configuration, logger) {
 // Setup command and data capture here.
 Extension.prototype.onInitialize = function (configuration, logger) {
     var self = this;
-    var ledPin = 35;
-    var buttonPin = 37;
 
     var options = {
         gpiomem: true,          /* Use /dev/gpiomem */
