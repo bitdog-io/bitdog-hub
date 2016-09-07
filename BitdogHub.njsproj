@@ -31,9 +31,10 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="examples\mp3Extension.js" />
-    <Compile Include="examples\IFTTTExtension.js" />
-    <Compile Include="examples\rpioExtension.js" />
+    <Compile Include="extensions\blankExtension.js" />
+    <Compile Include="extensions\mp3Extension.js" />
+    <Compile Include="extensions\IFTTTExtension.js" />
+    <Compile Include="extensions\rpioExtension.js" />
     <Compile Include="lib\alarm\alarmMode.js" />
     <Compile Include="lib\alarm\bitdogAlarm.js" />
     <Compile Include="lib\alarm\zone.js" />
@@ -54,20 +55,20 @@
     <Compile Include="lib\zwave\zwaveValue.js" />
     <Content Include=".npmignore" />
     <Content Include="database\README.md" />
-    <Content Include="examples\mp3\RedAlert.mp3" />
-    <Content Include="examples\mp3\Ringing-clock.mp3" />
+    <Content Include="extensions\mp3\RedAlert.mp3" />
+    <Content Include="extensions\mp3\Ringing-clock.mp3" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="examples\mp3\" />
+    <Folder Include="extensions\mp3\" />
     <Folder Include="lib\" />
     <Folder Include="bin\" />
     <Folder Include="lib\alarm\" />
     <Folder Include="lib\automation\" />
     <Folder Include="lib\brains\" />
     <Folder Include="lib\zwave\" />
-    <Folder Include="examples\" />
+    <Folder Include="extensions\" />
     <Folder Include="database\" />
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
