@@ -10,6 +10,8 @@ var API_KEY = '';
 var ledPin = 35;
 var buttonPin = 37;
 
+var blinkTimer = null;
+
 
 // By default the rpio module will use /dev/gpiomem 
 // when using simple GPIO access. 
@@ -22,7 +24,6 @@ var buttonPin = 37;
 //EOF
 
 // Create a class called Extension
-// This can be any name, give it a good one.
 function Extension() {
     // Initialize a variable to hold button state
     this.buttonState = 'unknown';
@@ -80,19 +81,23 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     }
 
     // The the rpio library to poll a pin 
-    // Just an example way to do it. First way
     rpio.poll(buttonPin, pollcb);
 
     // Add a command to this hub that turns the LED on and off
     this.addCommand('Turn LED on/off', onOffMessageSchema, function (message, configuration, logger) {
 
-        // If the message contains 'off' set the GPIO pin high - depends on how the LED is wired to the GPIO pins
-        if (message.value1 === 'off') {
-            rpio.write(ledPin, rpio.HIGH);
-        } else {
-            // Or turn on the LED by setting the pin low.
+        // check if we already have a timer running
+        if (blinkTimer === null) {
+
+            // turn the LED on by setting pin low
             rpio.write(ledPin, rpio.LOW);
-        }
+
+            // turn off LED after 30 seconds
+            blinkTimer = setTimeout(function () {
+                rpio.write(ledPin, rpio.HIGH);
+                blinkTimer = null;
+            }, 30000); 
+         }
         
     });
 
