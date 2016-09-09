@@ -12,6 +12,8 @@ var buttonPin = 13; // hardware pin 13
 
 var blinkTimer = null;
 
+// Initialize a variable to hold button state
+var buttonState = 'unknown';
 
 // By default the rpio module will use /dev/gpiomem 
 // when using simple GPIO access. 
@@ -25,8 +27,7 @@ var blinkTimer = null;
 
 // Create a class called Extension
 function Extension() {
-    // Initialize a variable to hold button state
-    this.buttonState = 'unknown';
+ 
 }
 
 // Extension inherits from ExtensionBase
@@ -61,7 +62,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     // Open a GPIO pin for our LED, initialize to off.
     rpio.open(ledPin, rpio.OUTPUT, rpio.HIGH);
     // Open a GPIO pin for our switch
-    rpio.open(buttonPin, rpio.INPUT, rpio.PULL_UP);
+    rpio.open(buttonPin, rpio.INPUT, rpio.PULL_DOWN);
 
     // Create a callback function for the rpio polling routine
     function pollcb(pin) {
@@ -69,12 +70,12 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         var newState = rpio.read(pin) ? 'on' : 'off';
 
         // If the switch pin has transitioned to a new value...
-        if (newState !== self.buttonState) {
+        if (newState !== buttonState) {
             // Set the variable 
-            self.buttonState = newState;
+            buttonState = newState;
 
             // Send a message to our IFTTT cloud account about our new switch state.
-            this.sendIFTTTCommand(API_KEY,'Switch Status', function (message) {
+            self.sendIFTTTCommand(API_KEY,'Switch Status', function (message) {
                 message.value1 = self.buttonState;
             });
         }
