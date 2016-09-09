@@ -6,7 +6,7 @@ var util = require('util');
 // Example Raspberry PI I/O library
 var rpio = require('rpio');
 
-var API_KEY = '';
+var API_KEY = 'test';
 var ledPin = 11; // hardware pin 11
 var buttonPin = 13; // hardware pin 13
 
@@ -76,7 +76,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 
             // Send a message to our IFTTT cloud account about our new switch state.
             self.sendIFTTTCommand(API_KEY,'Switch Status', function (message) {
-                message.value1 = self.buttonState;
+                message.value1 = buttonState;
             });
         }
     }
