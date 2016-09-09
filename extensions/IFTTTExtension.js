@@ -59,7 +59,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         .addStringProperty('value1', 'off', { values: ['on', 'off'] });
 
     // Open a GPIO pin for our LED, initialize to off.
-    rpio.open(ledPin, rpio.OUTPUT, rpio.LOW);
+    rpio.open(ledPin, rpio.OUTPUT, rpio.HIGH);
     // Open a GPIO pin for our switch
     rpio.open(buttonPin, rpio.INPUT, rpio.PULL_DOWN);
 
