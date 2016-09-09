@@ -7,8 +7,8 @@ var util = require('util');
 var rpio = require('rpio');
 
 var API_KEY = '';
-var ledPin = 35;
-var buttonPin = 37;
+var ledPin = 11; // hardware pin 11
+var buttonPin = 13; // hardware pin 13
 
 var blinkTimer = null;
 
@@ -61,7 +61,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     // Open a GPIO pin for our LED, initialize to off.
     rpio.open(ledPin, rpio.OUTPUT, rpio.HIGH);
     // Open a GPIO pin for our switch
-    rpio.open(buttonPin, rpio.INPUT, rpio.PULL_DOWN);
+    rpio.open(buttonPin, rpio.INPUT, rpio.PULL_UP);
 
     // Create a callback function for the rpio polling routine
     function pollcb(pin) {
