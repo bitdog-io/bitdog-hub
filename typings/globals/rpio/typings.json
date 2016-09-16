@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/202e18feddce6512b2e7a89262c13c0f703f859b/rpio/rpio.d.ts",
+    "raw": "registry:dt/rpio#0.0.0+20160914114152",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/202e18feddce6512b2e7a89262c13c0f703f859b/rpio/rpio.d.ts"
+  }
+}
