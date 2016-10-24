@@ -41,7 +41,7 @@
     <Compile Include="lib\automation\bitdogAutomation.js" />
     <Compile Include="lib\bitdogHub.js" />
     <Compile Include="lib\eventProcessor.js" />
-    <Compile Include="lib\brains\brain.js" />
+    <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\extensionBase.js" />
     <Compile Include="lib\zwave\zwaveScene.js" />
     <Compile Include="main.js" />
