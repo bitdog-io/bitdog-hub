@@ -43,6 +43,7 @@
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\extensionBase.js" />
+    <Compile Include="lib\zwave\zwaveDeviceClasses.js" />
     <Compile Include="lib\zwave\zwaveScene.js" />
     <Compile Include="main.js" />
     <Compile Include="lib\zwave\zwaveCommandClasses.js" />
