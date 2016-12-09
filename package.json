@@ -26,6 +26,6 @@
     "tingodb": "^0.4.2"
   },
   "optionalDependencies": {
-    "rpio": "0.9.11"
+    "rpio": "^0.9.11"
   }
 }
