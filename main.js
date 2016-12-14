@@ -3,7 +3,10 @@ var bitdogClient = require('bitdog-client');
 var program = require('commander');
 var path = require('path');
 var constants = require('./lib/constants.js');
-var saveExtensionPaths = bitdogClient.configuration.get(constants.EXTENSION_PATHS);
+var savedExtensionPaths = bitdogClient.configuration.get(constants.EXTENSION_PATHS);
+
+if (typeof savedExtensionPaths === typeof undefined || savedExtensionPaths === null)
+    savedExtensionPaths = [];
 
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
@@ -43,34 +46,45 @@ console.log("Logging to " + bitdogClient.configuration.logFilePath);
 
 if (typeof program.extension !== typeof undefined) {
 
-    if (program.extension === 'clear')
-        bitdogClient.configuration.set(constants.EXTENSION_PATHS, []);
-    else
-        loadExtension(path.resolve(program.extension));
+    if (program.extension === 'clear') {
+        savedExtensionPaths = [];
+        bitdogClient.configuration.set(constants.EXTENSION_PATHS, savedExtensionPaths);
+    }
+    else {
+        saveExtension(path.resolve(program.extension));
+    }
+}
 
-} else if (typeof saveExtensionPaths !== typeof undefined && saveExtensionPaths !== null && saveExtensionPaths.length > 0) {
-    loadExtension(saveExtensionPaths[0]);
-} 
+loadExtensions();
 
 bitdogHub.start();
 
-function loadExtension(extensionFilePath) {
+function saveExtension(extensionFilePath) {
+    savedExtensionPaths.push(extensionFilePath);
+    bitdogClient.configuration.set(constants.EXTENSION_PATHS, savedExtensionPaths);
+}
+
+function loadExtensions() {
     //process.chdir(__dirname);
     //console.log("Setting working directory to " + __dirname);
-    console.log("Loading extension at " + extensionFilePath);
+    var extensionFilePath = '';
 
-    try {
-        var Extension = require(extensionFilePath);
+    for (var index = 0; index < savedExtensionPaths.length; index++) {
+        extensionFilePath = savedExtensionPaths[index];
+        console.log("Loading extension at " + extensionFilePath);
 
-        var extension = new Extension();
-        extension.bitdogHub = bitdogHub;
+        try {
+            var Extension = require(extensionFilePath);
 
-        extension.onInitialize(bitdogClient.configuration, bitdogClient.logger);
+            var extension = new Extension();
+            extension.bitdogHub = bitdogHub;
 
-        bitdogClient.configuration.set(constants.EXTENSION_PATHS, [extensionFilePath]);
-    }
-    catch (exception) {
-        bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ', { message: exception.message, stack: exception.stack } );
+            extension.onInitialize(bitdogClient.configuration, bitdogClient.logger);
+
+        }
+        catch (exception) {
+            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Exception loading extension: ', { message: exception.message, stack: exception.stack });
+        }
     }
 }
 
