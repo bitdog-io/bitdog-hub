@@ -39,6 +39,7 @@
     <Compile Include="lib\alarm\bitdogAlarm.js" />
     <Compile Include="lib\alarm\zone.js" />
     <Compile Include="lib\automation\bitdogAutomation.js" />
+    <Compile Include="lib\automation\scheduler.js" />
     <Compile Include="lib\bitdogHub.js" />
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\brains\bitdogBrain.js" />
