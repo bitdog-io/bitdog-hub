@@ -76,11 +76,13 @@
     <Folder Include="typings\" />
     <Folder Include="typings\globals\" />
     <Folder Include="typings\globals\commander\" />
+    <Folder Include="typings\globals\moment\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\rpio\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="typings\globals\commander\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\moment\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\rpio\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
