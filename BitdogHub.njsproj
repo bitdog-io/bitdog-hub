@@ -31,6 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="bin\RemoteDebug.js" />
     <Compile Include="extensions\blankExtension.js" />
     <Compile Include="extensions\mp3Extension.js" />
     <Compile Include="extensions\IFTTTExtension.js" />

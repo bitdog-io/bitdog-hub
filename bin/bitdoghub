@@ -35,6 +35,7 @@ program
     .option('-c,--configpath <config file path>', 'The path for configuration files.')
 	.option('-t,--tail', 'Write logs to console also.')
     .option('-e,--extension <extension file path | clear>', 'Path to file that has extension code. Use clear to remote extension from stored configuration.')
+    .option('-d,--debug', 'Start remote debugging and wait for attachment.')
 
 
     .action(function (options) {
@@ -55,6 +56,7 @@ program
 			var fs = require('fs');
 			var child_process = require('child_process');
 			var packageFilePath = path.resolve(__dirname, '../');
+			var debugScriptPath = path.resolve(__dirname, 'RemoteDebug.js');
 			var pidFile = path.resolve(__dirname,'pid.txt');
 			var args = [];
 
@@ -65,7 +67,15 @@ program
 					detached: true 
 				}; 
 
-				args.push(packageFilePath);
+				if(options.debug) {
+					console.log("Debug mode, waiting for attachment");
+					args.push(debugScriptPath);
+					args.push('-waitforattach');
+					args.push(packageFilePath);
+
+				} else {
+					args.push(packageFilePath);
+				}
 
 				if(options.tail) {
 					args.push('--tail');
