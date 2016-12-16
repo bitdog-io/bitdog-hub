@@ -68,9 +68,8 @@ program
 				}; 
 
 				if(options.debug) {
-					console.log("Debug mode, waiting for attachment");
+					console.log("Debug mode");
 					args.push(debugScriptPath);
-					args.push('-waitforattach');
 					args.push(packageFilePath);
 
 				} else {
