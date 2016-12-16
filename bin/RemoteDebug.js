@@ -124,7 +124,7 @@ function ensureDebuggeeStarted() {
             process.exit();
         });
         process.on('SIGTERM', function (code) {
-            debuggee.exit();
+            debuggee.kill('SIGTERM');
             debuggee = null;
         });
         console.log('Debuggee started: ' + node + ' ' + debugArg + ' ' + scriptToDebug + ' ' + passThroughArgs);
