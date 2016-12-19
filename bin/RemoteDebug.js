@@ -123,8 +123,12 @@ function ensureDebuggeeStarted() {
         debuggee.on('SIGTERM', function (code) {
             process.exit();
         });
-        process.on('SIGTERM', function (code) {
-            debuggee.kill('SIGTERM');
+        debuggee.on('SIGINT', function (code) {
+            process.exit();
+        });
+        process.on('SIGINT', function (code) {
+            console.log('SIGINT received by debugger, stopping target');
+            debuggee.kill('SIGINT');
             debuggee = null;
         });
         console.log('Debuggee started: ' + node + ' ' + debugArg + ' ' + scriptToDebug + ' ' + passThroughArgs);
