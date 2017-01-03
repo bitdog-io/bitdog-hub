@@ -9,7 +9,7 @@ if (typeof savedExtensionPaths === typeof undefined || savedExtensionPaths === n
     savedExtensionPaths = [];
 
 // Create serializable error objects
-if (!('toJSON' in Error.prototype))
+if (!('toJSON' in Error.prototype)) {
     Object.defineProperty(Error.prototype, 'toJSON', {
         value: function () {
             var alt = {};
@@ -23,6 +23,7 @@ if (!('toJSON' in Error.prototype))
         configurable: true,
         writable: true
     });
+}
 
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
