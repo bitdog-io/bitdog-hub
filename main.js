@@ -8,6 +8,22 @@ var savedExtensionPaths = bitdogClient.configuration.get(constants.EXTENSION_PAT
 if (typeof savedExtensionPaths === typeof undefined || savedExtensionPaths === null)
     savedExtensionPaths = [];
 
+// Create serializable error objects
+if (!('toJSON' in Error.prototype))
+    Object.defineProperty(Error.prototype, 'toJSON', {
+        value: function () {
+            var alt = {};
+
+            Object.getOwnPropertyNames(this).forEach(function (key) {
+                alt[key] = this[key];
+            }, this);
+
+            return alt;
+        },
+        configurable: true,
+        writable: true
+    });
+
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
     bitdogHub.stop();
