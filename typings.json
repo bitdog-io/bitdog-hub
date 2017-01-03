@@ -2,7 +2,7 @@
   "globalDependencies": {
     "commander": "registry:dt/commander#2.3.0+20160317120654",
     "moment": "registry:dt/moment#2.11.1+20161010105546",
-    "node": "registry:dt/node#6.0.0+20161212163245",
+    "node": "registry:dt/node#6.0.0+20161229171858",
     "rpio": "registry:dt/rpio#0.0.0+20160921181726"
   }
 }
