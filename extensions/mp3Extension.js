@@ -2,7 +2,7 @@
 //
 //	mp3Extension.js
 //
-//	Copyright (c) 2016 Bitdog LLC.
+//	Copyright (c) 2015-2017 Bitdog LLC.
 //
 //	SOFTWARE NOTICE AND LICENSE
 //
