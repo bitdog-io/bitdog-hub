@@ -54,7 +54,7 @@ process.on('SIGINT', function () {
     setTimeout(function () {
         bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Calling process exit...');
         process.exit(0);
-    }, 5000);
+    }, 10000);
 
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
 
