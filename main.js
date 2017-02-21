@@ -53,7 +53,10 @@ if (!('toJSON' in Error.prototype)) {
 process.on('SIGINT', function () {
     bitdogClient.logger.logProcessEvent('Bitdog Hub', 'SIGINT, stopping.');
     bitdogHub.stop();
-    setTimeout(function () { process.exit(0); }, 5000);
+    setTimeout(function () {
+        bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Calling process exit...');
+        process.exit(0);
+    }, 5000);
 });
 
 process.on('uncaughtException', function (error) {
