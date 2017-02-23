@@ -103,7 +103,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     }
 
     // The the rpio library to poll a pin 
-    // Just an example way to do it. First way
+    // Just an example way to do it. <First way>
     rpio.poll(buttonPin, pollcb);
 
     // Add a command to this hub that turns the LED on and off
@@ -119,7 +119,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         
     });
 
-    // Register data collector and set it to poll every 60 seconds. Second way
+    // Register data collector and set it to poll every 60 seconds. <Second way>
     // Set seconds to -1 to not poll at all. 
     this.addDataCollector('Switch Status', onOffMessageSchema, 60000, function (message, configuration, logger) {
 

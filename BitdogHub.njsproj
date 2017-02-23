@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="extensions\mp3\" />
+    <Folder Include="extensions\sayCache\" />
     <Folder Include="lib\" />
     <Folder Include="bin\" />
     <Folder Include="lib\alarm\" />
