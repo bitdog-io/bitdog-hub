@@ -2,6 +2,11 @@
 var path = require('path');
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
+var child_process = require('child_process');
+
+function continueUpgrade() {
+	child_process.execSync('bash <(curl -s https://bitdog.io/installhub)');
+}
 
 program
     .version('0.0.52');
@@ -54,7 +59,6 @@ program
 	 
 		function start(options) {
 			var fs = require('fs');
-			var child_process = require('child_process');
 			var packageFilePath = path.resolve(__dirname, '../');
 			var debugScriptPath = path.resolve(__dirname, 'RemoteDebug.js');
 			var pidFile = path.resolve(__dirname,'pid.txt');
@@ -130,7 +134,6 @@ program
     .command('stop')
     .description('Stop bitdog-hub.')
     .action(function (options) {
-		var child_process = require('child_process');
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
 		var pidFile = path.resolve(__dirname,'pid.txt');
@@ -183,17 +186,12 @@ program
     .command('upgrade')
     .description('Upgrade to the latest bitdog-hub software.')
     .action(function (options) {
-		var child_process = require('child_process');
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
 		var pidFile = path.resolve(__dirname,'pid.txt');
 		var isRunning = true;
 
 		try {
-
-		    function continue() {
-				child_process.execSync('bash <(curl -s https://bitdog.io/installhub)');
-			}
 
 			try
 			{
@@ -228,12 +226,13 @@ program
 					} catch(e) {					
 						console.log('bitdog-hub has stopped');
    						fs.unlinkSync(pidFile);
-						continue();
+						continueUpgrade();
 					}
 
 				}, 20000);
+
 			} else {
-				continue();
+				continueUpgrade();
 			}
    
 		} catch (e) {
