@@ -5,7 +5,7 @@ var bitdogClient = require('bitdog-client');
 var child_process = require('child_process');
 
 function continueUpgrade() {
-	var script = child_process.spawn('/bin/bash',['<(curl -s https://bitdog.io/installhub)');
+	var script = child_process.spawn('/bin/bash',['<(curl -s https://bitdog.io/installhub)']);
 	script.stdout.on('data', (data) => {
 	  console.log(`stdout: ${data}`);
 	});
