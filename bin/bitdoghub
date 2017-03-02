@@ -191,6 +191,10 @@ program
 
 		try {
 
+		    function continue() {
+				child_process.execSync('bash <(curl -s https://bitdog.io/installhub)');
+			}
+
 			try
 			{
 				fs.accessSync(pidFile, fs.F_OK);
@@ -231,15 +235,12 @@ program
 			} else {
 				continue();
 			}
-
    
 		} catch (e) {
 			console.log(JSON.stringify(e));
 		}
 
-		function continue() {
-			child_process.execSync('bash <(curl -s https://bitdog.io/installhub)');
-		}
+
     });
 
 program.parse(process.argv);
