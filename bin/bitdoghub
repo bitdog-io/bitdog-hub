@@ -5,18 +5,11 @@ var bitdogClient = require('bitdog-client');
 var child_process = require('child_process');
 
 function continueUpgrade() {
-	var script = child_process.spawn('bash <(curl -s https://bitdog.io/installhub)');
-	script.stdout.on('data', (data) => {
-	  console.log(`stdout: ${data}`);
+	var child = child_process.spawn('/bin/bash', [ '-c', 'curl --silent --output - --max-time 1 https://bitdog.io/installhub || true' ], { stdio: 'inherit' });
+
+	child.on('close', function(code) {
 	});
 
-	script.stderr.on('data', (data) => {
-	  console.log(`stderr: ${data}`);
-	});
-
-	script.on('close', (code) => {
-	  //console.log(`child process exited with code ${code}`);
-	});
 }
 
 program
