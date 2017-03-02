@@ -5,7 +5,7 @@ var bitdogClient = require('bitdog-client');
 var child_process = require('child_process');
 
 function continueUpgrade() {
-	child_process.execSync('bash', ['<' , '(curl -s https://bitdog.io/installhub)'],{shell: true, stdio: [null, process.stdout, process.stderr]});
+	child_process.execSync('bash < (curl -s https://bitdog.io/installhub)',{shell: true, stdio: [0,1,2]});
 }
 
 program
