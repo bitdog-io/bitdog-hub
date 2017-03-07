@@ -60,7 +60,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
     // Create a custom message schema with one string property.
     // add a list of values to the property that are file names
     var playMessageSchema = this.createMessageSchema('Play')
-        .addStringProperty('sound', '', { values: files });
+        .addStringProperty('sound', '', { values: files }, 'The file to play','Sound' );
 
 
     // Add a command to this hub that plays sound
