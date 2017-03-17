@@ -50,7 +50,7 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 
 Extension.prototype.onSystemEvent = function (eventInfo, configuration, logger) {
 
-    logger.log('Saying - ' + eventInfo.text);
+    logger.log('Say Extenstion','Saying - ' + eventInfo.text);
     this.say(eventInfo.text, configuration, logger);
 
 };
@@ -59,11 +59,11 @@ Extension.prototype.say = function (text, configuration, logger) {
 
     this.getMp3(text, configuration, logger,
         function (filePath) {
-            logger.log('Downloaded ' + filePath);
+            logger.log('Say Extenstion','Downloaded ' + filePath);
 
     },
         function (error) {
-            logger.log('Download error ' + error);
+            logger.log('Say Extenstion','Download error ' + error);
 
 
 
