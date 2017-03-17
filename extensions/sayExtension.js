@@ -57,7 +57,7 @@ Extension.prototype.onSystemEvent = function (eventInfo, configuration, logger) 
 
 Extension.prototype.say = function (text, configuration, logger) {
 
-    this.getMp3(text,
+    this.getMp3(text, configuration, logger,
         function (filePath) {
             logger.log('Downloaded ' + filePath);
 
@@ -70,7 +70,7 @@ Extension.prototype.say = function (text, configuration, logger) {
     });
 };
 
-Extension.prototype.getMp3 = function (text, successCallback, errorCallback) {
+Extension.prototype.getMp3 = function (text, configuration, logger, successCallback, errorCallback) {
 
     var self = this;
     var port = null;
@@ -83,8 +83,8 @@ Extension.prototype.getMp3 = function (text, successCallback, errorCallback) {
             successCallback(filePath);
 
     var request = {
-        nodeId: bitdogClient.configuration.nodeId,
-        authKey: bitdogClient.configuration.authKey,
+        nodeId: configuration.nodeId,
+        authKey: configuration.authKey,
         text: text
     };
 
