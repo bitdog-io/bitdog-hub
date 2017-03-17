@@ -36,6 +36,7 @@
     <Compile Include="extensions\mp3Extension.js" />
     <Compile Include="extensions\IFTTTExtension.js" />
     <Compile Include="extensions\rpioExtension.js" />
+    <Compile Include="extensions\sayExtension.js" />
     <Compile Include="lib\alarm\alarmMode.js" />
     <Compile Include="lib\alarm\bitdogAlarm.js" />
     <Compile Include="lib\alarm\zone.js" />
@@ -47,6 +48,7 @@
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\extensionBase.js" />
+    <Compile Include="lib\systemEvents.js" />
     <Compile Include="lib\zwave\zwaveAlarmNotification.js" />
     <Compile Include="lib\zwave\zwaveScene.js" />
     <Compile Include="main.js" />
@@ -70,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="extensions\mp3\" />
-    <Folder Include="extensions\sayCache\" />
     <Folder Include="lib\" />
     <Folder Include="bin\" />
     <Folder Include="lib\alarm\" />
