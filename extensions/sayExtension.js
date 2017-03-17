@@ -94,7 +94,7 @@ Extension.prototype.getMp3 = function (text, successCallback, errorCallback) {
         'Content-Type': 'application/json',
     };
 
-    var parsedUrl = url.parse(bitdogClient.constants.CENTRAL_URL + '/say');
+    var parsedUrl = url.parse(bitdogClient.constants.CENTRAL_URL + '/realm/say');
 
     if (parsedUrl.port != null)
         port = parsedUrl.port;
