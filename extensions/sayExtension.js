@@ -168,7 +168,7 @@ Extension.prototype.play = function (configuration, logger) {
     var playerProcess = null;
 
     try {
-        playerProcess = child_process.spawn('omxplayer', [filePath]);
+        playerProcess = child_process.spawn('mplayer', [filePath]);
 
         playerProcess.stdout.on('data', function (data) {
             logger.log(`Say extension`, data);
