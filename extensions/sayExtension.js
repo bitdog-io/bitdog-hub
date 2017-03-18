@@ -116,7 +116,7 @@ Extension.prototype.getMp3 = function (text, configuration, logger, successCallb
     protocol = parsedUrl.protocol == 'https:' ? https : http;
 
     var request = protocol.request(options, function (response) {
-        var fileStream = fs.createWriteStream(dest);
+        var fileStream = fs.createWriteStream(filePath);
 
         response.on('data', function (chunk) {
             fileStream.write(chunk);
