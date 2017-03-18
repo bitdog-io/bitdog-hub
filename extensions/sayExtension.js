@@ -76,7 +76,7 @@ Extension.prototype.getMp3 = function (text, configuration, logger, successCallb
     var port = null;
     var protocol = null;
     var fileName = crypto.createHash('sha256').update(text).digest('hex') + '.mp3';
-    var filePath = os.tmpdir + path.sep + fileName;
+    var filePath = os.tmpdir() + path.sep + fileName;
 
     if (fs.exists(filePath))
         if (successCallback)
