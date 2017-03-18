@@ -48,11 +48,24 @@ Extension.prototype.onMessage = function (message, configuration, logger) {
 };
 
 Extension.prototype.onInitialize = function (configuration, logger) {
+    var self = this;
+
+    // Create a custom message schema with one string property.
+    var playMessageSchema = this.createMessageSchema('Say')
+        .addStringProperty('text', '', {}, 'The text to play', 'Text');
+
+
+    // Add a command to this hub that makes it say the provided text
+    this.addCommand('Say', playMessageSchema, function (message, configuration, logger) {
+        self.say(message.text, configuration, logger);
+
+    });
+
 };
 
 Extension.prototype.onSystemEvent = function (eventInfo, configuration, logger) {
 
-    logger.log('Say extension', 'Saying - ' + eventInfo.text);
+    logger.logProcessEvent('Say extension', 'Saying - ' + eventInfo.text);
     this.say(eventInfo.text, configuration, logger);
 
 };
@@ -62,12 +75,12 @@ Extension.prototype.say = function (text, configuration, logger) {
 
     this.getMp3(text, configuration, logger,
         function (filePath) {
-            logger.log('Say extension', 'Downloaded ' + filePath);
+            logger.logProcessEvent('Say extension', 'Downloaded ' + filePath);
             self.enqueue(filePath, configuration, logger);
 
         },
         function (error) {
-            logger.log('Say extension', 'Download error ' + error);
+            logger.logProcessEvent('Say extension', 'Download error ' + error);
         });
 };
 
