@@ -118,23 +118,14 @@ Extension.prototype.getMp3 = function (text, configuration, logger, successCallb
 
     var request = protocol.request(options, function (response) {
         var fileStream = fs.createWriteStream(filePath);
-
-        response.on('data', function (chunk) {
-            fileStream.write(chunk);
+        fileStream.on('finish', function () {
+            fileStream.close(function () {
+                successCallback(filePath);
+            });  // close() is async, call cb after close completes.
         });
 
-        response.on('end', function () {
-            fileStream.close();
+        response.pipe(fileStream);
 
-            if (this.statusCode == 200) {
-                if (successCallback)
-                    successCallback(filePath);
-            } else {
-                if (errorCallback)
-                    errorCallback();
-            }
-
-        });
     });
 
     request.on('error', function (e) {
