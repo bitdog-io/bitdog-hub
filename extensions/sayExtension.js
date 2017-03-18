@@ -35,9 +35,11 @@ var os = require('os');
 var fs = require('fs');
 var path = require('path');
 var child_process = require('child_process');
+var sayQueue = [];
 
 
 function Extension() {
+    this.isPlaying = false;
 }
 // Extension inherits from ExtensionBase
 util.inherits(Extension, ExtensionBase);
@@ -50,24 +52,23 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 
 Extension.prototype.onSystemEvent = function (eventInfo, configuration, logger) {
 
-    logger.log('Say Extenstion','Saying - ' + eventInfo.text);
+    logger.log('Say extension', 'Saying - ' + eventInfo.text);
     this.say(eventInfo.text, configuration, logger);
 
 };
 
 Extension.prototype.say = function (text, configuration, logger) {
+    var self = this;
 
     this.getMp3(text, configuration, logger,
         function (filePath) {
-            logger.log('Say Extenstion','Downloaded ' + filePath);
+            logger.log('Say extension', 'Downloaded ' + filePath);
+            self.enqueue(filePath, configuration, logger);
 
-    },
+        },
         function (error) {
-            logger.log('Say Extenstion','Download error ' + error);
-
-
-
-    });
+            logger.log('Say extension', 'Download error ' + error);
+        });
 };
 
 Extension.prototype.getMp3 = function (text, configuration, logger, successCallback, errorCallback) {
@@ -146,6 +147,48 @@ Extension.prototype.getMp3 = function (text, configuration, logger, successCallb
 
 }
 
+Extension.prototype.enqueue = function (filePath, configuration, logger) {
+    sayQueue.push(filePath);
+    this.play(configuration, logger);
+}
+
+Extension.prototype.play = function (configuration, logger) {
+
+    if (this.isPlaying === true)
+        return;
+
+    this.isPlaying = true;
+
+    var self = this;
+    var filePath = sayQueue.shift();
+    var playerProcess = null;
+
+    try {
+        playerProcess = child_process.spawn('omxplayer', [filePath]);
+
+        playerProcess.stdout.on('data', function (data) {
+            logger.log(`Say extension`, data);
+        });
+
+        playerProcess.stderr.on('data', function (data) {
+            logger.log(`Say extension`, data);
+        });
+
+        playerProcess.on('close', function(code) {
+            self.isPlaying = false;
+
+            if (sayQueue.length > 0) {
+                setInterval(function () { self.play(configuration, logger); }, 1000);
+            }
+
+        });
+
+    } catch (error) {
+        logger.log(`Say extension`, error);
+        this.isPlaying = false;
+
+    }
+}
 // Export your Extension class so it can be loaded by the framework
 module.exports = Extension;
 
