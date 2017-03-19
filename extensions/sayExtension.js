@@ -75,7 +75,7 @@ Extension.prototype.say = function (text, configuration, logger) {
 
     this.getAudio(text, configuration, logger,
         function (filePath) {
-            logger.logProcessEvent('Say extension', 'Downloaded ' + filePath);
+            logger.logProcessEvent('Say extension','Enqueued', filePath);
             self.enqueue(filePath, configuration, logger);
 
         },
@@ -92,9 +92,12 @@ Extension.prototype.getAudio = function (text, configuration, logger, successCal
     var fileName = crypto.createHash('sha256').update(text).digest('hex') + '.mp3';
     var filePath = os.tmpdir() + path.sep + fileName;
 
-    if (fs.exists(filePath))
+    if (fs.exists(filePath)) {
+        logger.logProcessEvent('Say extension', 'Found cached file',filePath);
+
         if (successCallback)
             successCallback(filePath);
+    }
 
     var request = {
         nodeId: configuration.nodeId,
@@ -178,11 +181,11 @@ Extension.prototype.play = function (configuration, logger) {
         playerProcess = child_process.spawn('sudo', ['mplayer','-af','volume=15:1',filePath]);
 
         playerProcess.stdout.on('data', function (data) {
-            logger.log(`Say extension`, data);
+            logger.logProcessEvent(`Say extension`, data);
         });
 
         playerProcess.stderr.on('data', function (data) {
-            logger.log(`Say extension`, data);
+            logger.logProcessEvent(`Say extension`, data);
         });
 
         playerProcess.on('close', function(code) {
@@ -195,7 +198,7 @@ Extension.prototype.play = function (configuration, logger) {
         });
 
     } catch (error) {
-        logger.log(`Say extension`, error);
+        logger.logProcessEvent(`Say extension`, error);
         this.isPlaying = false;
 
     }
