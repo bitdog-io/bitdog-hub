@@ -73,7 +73,7 @@ Extension.prototype.onSystemEvent = function (eventInfo, configuration, logger) 
 Extension.prototype.say = function (text, configuration, logger) {
     var self = this;
 
-    this.getMp3(text, configuration, logger,
+    this.getAudio(text, configuration, logger,
         function (filePath) {
             logger.logProcessEvent('Say extension', 'Downloaded ' + filePath);
             self.enqueue(filePath, configuration, logger);
@@ -84,12 +84,12 @@ Extension.prototype.say = function (text, configuration, logger) {
         });
 };
 
-Extension.prototype.getMp3 = function (text, configuration, logger, successCallback, errorCallback) {
+Extension.prototype.getAudio = function (text, configuration, logger, successCallback, errorCallback) {
 
     var self = this;
     var port = null;
     var protocol = null;
-    var fileName = crypto.createHash('sha256').update(text).digest('hex') + '.ogg';
+    var fileName = crypto.createHash('sha256').update(text).digest('hex') + '.mp3';
     var filePath = os.tmpdir() + path.sep + fileName;
 
     if (fs.exists(filePath))
@@ -168,7 +168,10 @@ Extension.prototype.play = function (configuration, logger) {
     var playerProcess = null;
 
     try {
-        playerProcess = child_process.spawn('mplayer', [filePath]);
+
+        //Found that mplayer may not have correct premissions to play smoothly
+        // ellevated premissions helps.
+        playerProcess = child_process.spawn('sudo mplayer', [filePath]);
 
         playerProcess.stdout.on('data', function (data) {
             logger.log(`Say extension`, data);
