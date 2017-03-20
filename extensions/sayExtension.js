@@ -169,8 +169,10 @@ Extension.prototype.play = function (configuration, logger) {
     var self = this;
     var filePath = sayQueue.shift();
 
-    if (typeof filePath === typeof undefined || filePath === null)
+    if (typeof filePath === typeof undefined || filePath === null) {
+        this.isPlaying = false;
         return;
+    }
 
     var playerProcess = null;
 
