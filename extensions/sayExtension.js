@@ -180,10 +180,10 @@ Extension.prototype.play = function (configuration, logger) {
 
         //Found that mplayer may not have correct premissions to play smoothly
         // ellevated premissions helps.
-        playerProcess = child_process.spawn('sudo', ['mplayer', '-af', '--quiet', '--noconfig=all', 'volume=15:1' , filePath]);
+        playerProcess = child_process.spawn('sudo', ['mplayer', '-af', 'volume=15:1', filePath]);
 
         playerProcess.stdout.on('data', function (data) {
-            logger.logProcessEvent(`Say extension`, data);
+            //logger.logProcessEvent(`Say extension`, data);
         });
 
         playerProcess.stderr.on('data', function (data) {
