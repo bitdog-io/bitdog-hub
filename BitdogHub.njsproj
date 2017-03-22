@@ -44,6 +44,7 @@
     <Compile Include="lib\automation\eventCapturer.js" />
     <Compile Include="lib\automation\scheduler.js" />
     <Compile Include="lib\bitdogHub.js" />
+    <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\brains\controller.js" />
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\extensionBase.js" />
@@ -75,6 +76,7 @@
     <Folder Include="bin\" />
     <Folder Include="lib\alarm\" />
     <Folder Include="lib\automation\" />
+    <Folder Include="lib\brains\" />
     <Folder Include="lib\zwave\" />
     <Folder Include="extensions\" />
     <Folder Include="database\" />
