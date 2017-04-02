@@ -64,17 +64,12 @@ Extension.prototype.onInitialize = function (configuration, logger) {
 };
 
 Extension.prototype.onSystemEvent = function (eventInfo, configuration, logger) {
-
-    logger.logProcessEvent('Say extension', 'Saying - ' + eventInfo.text);
     this.say(eventInfo.text, configuration, logger);
-
 };
 
 Extension.prototype.say = function (text, configuration, logger) {
-    var self = this;
     sayQueue.push(text);
     logger.logProcessEvent('Say extension', 'Enqueued', { text: text });
-
     this.play(configuration, logger);
 
 };
@@ -87,8 +82,8 @@ Extension.prototype.getAudio = function (text, configuration, logger, successCal
     var fileName = crypto.createHash('sha256').update(text).digest('hex') + '.mp3';
     var filePath = os.tmpdir() + path.sep + fileName;
 
-    if (fs.exists(filePath)) {
-        logger.logProcessEvent('Say extension', 'Found cached file',filePath);
+    if (fs.existsSync(filePath) === true) {
+        logger.logProcessEvent('Say extension', 'Found cached file', filePath);
 
         if (successCallback)
             successCallback(filePath);
