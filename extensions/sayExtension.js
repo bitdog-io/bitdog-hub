@@ -150,14 +150,19 @@ Extension.prototype.getAudio = function (text, configuration, logger, successCal
 }
 
 Extension.prototype.play = function (configuration, logger) {
+    var self = this;
 
-    if (this.isPlaying === true)
+    if (this.isPlaying === true || sayQueue.length < 1)
         return;
 
     this.isPlaying = true;
 
-    var self = this;
     var text = sayQueue.shift();
+
+    if (typeof text === undefined || text === null) {
+        this.isPlaying = false;
+        return;
+    }
 
     this.getAudio(text, configuration, logger,
         function (filePath) {
@@ -206,6 +211,9 @@ Extension.prototype.play = function (configuration, logger) {
         function (error) {
             logger.logProcessEvent('Say extension', 'Download error ' + error);
             self.isPlaying = false;
+            if (sayQueue.length > 0) {
+                setInterval(function () { self.play(configuration, logger); }, 1000);
+            }
         });
 
 }
