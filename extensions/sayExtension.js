@@ -72,16 +72,11 @@ Extension.prototype.onSystemEvent = function (eventInfo, configuration, logger) 
 
 Extension.prototype.say = function (text, configuration, logger) {
     var self = this;
+    sayQueue.push(text);
+    logger.logProcessEvent('Say extension', 'Enqueued', { text: text });
 
-    this.getAudio(text, configuration, logger,
-        function (filePath) {
-            logger.logProcessEvent('Say extension','Enqueued', filePath);
-            self.enqueue(filePath, configuration, logger);
+    this.play(configuration, logger);
 
-        },
-        function (error) {
-            logger.logProcessEvent('Say extension', 'Download error ' + error);
-        });
 };
 
 Extension.prototype.getAudio = function (text, configuration, logger, successCallback, errorCallback) {
@@ -154,11 +149,6 @@ Extension.prototype.getAudio = function (text, configuration, logger, successCal
 
 }
 
-Extension.prototype.enqueue = function (filePath, configuration, logger) {
-    sayQueue.push(filePath);
-    this.play(configuration, logger);
-}
-
 Extension.prototype.play = function (configuration, logger) {
 
     if (this.isPlaying === true)
@@ -167,43 +157,53 @@ Extension.prototype.play = function (configuration, logger) {
     this.isPlaying = true;
 
     var self = this;
-    var filePath = sayQueue.shift();
+    var text = sayQueue.shift();
 
-    if (typeof filePath === typeof undefined || filePath === null) {
-        this.isPlaying = false;
-        return;
-    }
+    this.getAudio(text, configuration, logger,
+        function (filePath) {
 
-    var playerProcess = null;
-
-    try {
-
-        //Found that mplayer may not have correct premissions to play smoothly
-        // ellevated premissions helps.
-        playerProcess = child_process.spawn('sudo', ['mplayer', '-af', 'volume=15:1', filePath]);
-
-        playerProcess.stdout.on('data', function (data) {
-            //logger.logProcessEvent(`Say extension`, data);
-        });
-
-        playerProcess.stderr.on('data', function (data) {
-            logger.logProcessEvent(`Say extension`, data);
-        });
-
-        playerProcess.on('close', function(code) {
-            self.isPlaying = false;
-
-            if (sayQueue.length > 0) {
-                setInterval(function () { self.play(configuration, logger); }, 1000);
+            if (typeof filePath === typeof undefined || filePath === null) {
+                self.isPlaying = false;
+                return;
             }
 
+            var playerProcess = null;
+
+            try {
+
+                //Found that mplayer may not have correct premissions to play smoothly
+                // ellevated premissions helps.
+                playerProcess = child_process.spawn('sudo', ['mplayer', '-af', 'volume=15:1', filePath]);
+
+                playerProcess.stdout.on('data', function (data) {
+                    //logger.logProcessEvent(`Say extension`, data);
+                });
+
+                playerProcess.stderr.on('data', function (data) {
+                    logger.logProcessEvent(`Say extension`, data);
+                });
+
+                playerProcess.on('close', function (code) {
+                    self.isPlaying = false;
+
+                    if (sayQueue.length > 0) {
+                        setInterval(function () { self.play(configuration, logger); }, 1000);
+                    }
+
+                });
+
+            } catch (error) {
+                logger.logProcessEvent(`Say extension`, error);
+                self.isPlaying = false;
+
+            }
+
+        },
+        function (error) {
+            logger.logProcessEvent('Say extension', 'Download error ' + error);
+            self.isPlaying = false;
         });
 
-    } catch (error) {
-        logger.logProcessEvent(`Say extension`, error);
-        this.isPlaying = false;
-
-    }
 }
 // Export your Extension class so it can be loaded by the framework
 module.exports = Extension;
