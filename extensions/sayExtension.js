@@ -196,6 +196,10 @@ Extension.prototype.play = function (configuration, logger) {
                 logger.logProcessEvent(`Say extension`, error);
                 self.isPlaying = false;
 
+                if (sayQueue.length > 0) {
+                    setInterval(function () { self.play(configuration, logger); }, 1000);
+                }
+
             }
 
         },
