@@ -87,6 +87,8 @@ Extension.prototype.getAudio = function (text, configuration, logger, successCal
 
         if (successCallback)
             successCallback(filePath);
+
+        return;
     }
 
     var request = {
