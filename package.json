@@ -23,7 +23,7 @@
     "bitdog-client": "git+https://github.com/bitdog-io/bitdog-client.git",
     "commander": "^2.9.0",
     "moment": "^2.17.1",
-    "openzwave-shared": "git+https://github.com/OpenZWave/node-openzwave-shared.git",
+    "openzwave-shared": "git+https://github.com/bitdog-io/node-openzwave-shared.git",
     "suncalc": "^1.7.0",
     "tingodb": "^0.4.2"
   },
