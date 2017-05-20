@@ -13,10 +13,10 @@ function continueUpgrade() {
 }
 
 program
-    .version('0.0.52');
+    .version('0.0.64');
 	 
 program.command('register')
-    .description('Register this hub with Bitdog Cloud.')
+    .description('Register this Bitdog Hub with Bitdog Cloud.')
     .option('-u,--username <username>', 'The username for the Bitdog IoT Cloud to register this hub with.')
     .option('-p,--passphrase <passphrase>', 'The passphrase for the Bitdog IoT Cloud to register this hub with.')
     .option('-n,--nodename <nodename>', 'The name that will be displayed on the Bitdog IoT Cloud dashboard.')
@@ -51,7 +51,7 @@ program
 		if(bitdogClient.configuration.isRegistered === false) {
 			var readline = require('readline');
 			var rl = readline.createInterface(process.stdin, process.stdout);
-			rl.question("This bitdog-hub is not registered, try automatic registration? (y/n) ", function(answer) {
+			rl.question("This Bitdog Hub is not registered, try automatic registration? (y/n) ", function(answer) {
 				rl.close();
 				if(answer === 'y')
 					start(options);
@@ -118,11 +118,11 @@ program
 					{
 
 						child_process.execSync('/bin/kill -s 0 ' + pidId);
-						console.log('bitdog-hub started');
+						console.log('Bitdog Hub started');
 					    process.exitCode = 0;
 
 					} catch(e) {					
-						console.log('bitdog-hub has failed to start properly, pid:' + pidId);
+						console.log('Bitdog Hub has failed to start properly, pid:' + pidId);
    						fs.unlinkSync(pidFile);
 						process.exitCode = 1;
 					}
@@ -136,7 +136,7 @@ program
 
 program
     .command('stop')
-    .description('Stop bitdog-hub.')
+    .description('Stop Bitdog Hub.')
     .action(function (options) {
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
@@ -168,11 +168,11 @@ program
 				try
 				{
 					child_process.execSync('/bin/kill -s 0 ' + pidId);
-					console.log('bitdog-hub did not stop in timely fashion');
+					console.log('Bitdog Hub did not stop in timely fashion');
 					process.exitCode = 1;
 
 				} catch(e) {					
-				    console.log('bitdog-hub has stopped');
+				    console.log('Bitdog Hub has stopped');
    				    fs.unlinkSync(pidFile);
 					process.exitCode = 0;
 				}
@@ -188,7 +188,7 @@ program
 
 program
     .command('upgrade')
-    .description('Upgrade to the latest bitdog-hub software.')
+    .description('Upgrade to the latest Bitdog Hub software.')
     .action(function (options) {
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
@@ -203,7 +203,7 @@ program
 			}
 			catch(e) {
 				isRunning = false;
-			    console.log('bitdog-hub does not seem to be running');
+			    console.log('Bitdog Hub does not seem to be running');
 
 			}
 
@@ -211,7 +211,7 @@ program
 				var pid = fs.readFileSync(pidFile);
 				var pidId = parseInt(pid);
 
-				console.log('bitdog-hub is running, stopping now');
+				console.log('Bitdog Hub is running, stopping now');
 
 				try
 				{
@@ -224,11 +224,11 @@ program
 					try
 					{
 						child_process.execSync('/bin/kill -s 0 ' + pidId);
-						console.log('bitdog-hub did not stop in timely fashion');
+						console.log('Bitdog Hub did not stop in timely fashion');
 						process.exitCode = 1;
 
 					} catch(e) {					
-						console.log('bitdog-hub has stopped');
+						console.log('Bitdog Hub has stopped');
    						fs.unlinkSync(pidFile);
 						continueUpgrade();
 					}

@@ -2,8 +2,6 @@
 
 # Bitdog Hub implementation for Node.js
 
-### We are currently in alpha testing of our client API and cloud services. 
-
 [![npm version](https://badge.fury.io/js/bitdog-hub.svg)](http://badge.fury.io/js/bitdog-hub)
 
 [![NPM](https://nodei.co/npm/bitdog-hub.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/bitdog-hub/)
