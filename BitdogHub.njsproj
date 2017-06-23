@@ -62,6 +62,7 @@
     <Compile Include="lib\zwave\zwaveNode.js" />
     <Compile Include="lib\zwave\zwaveValue.js" />
     <Content Include=".npmignore" />
+    <Content Include="CHANGES.md" />
     <Content Include="database\README.md" />
     <Content Include="extensions\mp3\church-bells.mp3" />
     <Content Include="extensions\mp3\RedAlert.mp3" />
