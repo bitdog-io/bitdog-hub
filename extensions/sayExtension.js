@@ -182,7 +182,7 @@ Extension.prototype.play = function (configuration, logger) {
                 });
 
                 playerProcess.stderr.on('data', function (data) {
-                    logger.logProcessEvent(`Say extension`, data);
+                    logger.logProcessEvent('Say extension', data);
                 });
 
                 playerProcess.on('close', function (code) {
@@ -195,7 +195,7 @@ Extension.prototype.play = function (configuration, logger) {
                 });
 
             } catch (error) {
-                logger.logProcessEvent(`Say extension`, error);
+                logger.logProcessEvent('Say extension', error);
                 self.isPlaying = false;
 
                 if (sayQueue.length > 0) {
