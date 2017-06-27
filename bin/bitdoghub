@@ -13,7 +13,7 @@ function continueUpgrade() {
 }
 
 program
-    .version('0.0.64');
+    .version('0.1.00');
 	 
 program.command('register')
     .description('Register this Bitdog Hub with Bitdog Cloud.')
@@ -185,6 +185,13 @@ program
 		}
 
     });
+
+program
+	.command('help')
+	.description('Print usage and options.')
+	.action(function(options) {
+	 program.outputHelp();
+	});
 
 program
     .command('upgrade')
