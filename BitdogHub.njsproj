@@ -43,7 +43,7 @@
     <Compile Include="lib\automation\bitdogAutomation.js" />
     <Compile Include="lib\automation\eventCapturer.js" />
     <Compile Include="lib\automation\scheduler.js" />
-    <Compile Include="lib\automation\weatherMan.js" />
+    <Compile Include="lib\automation\weatherManager.js" />
     <Compile Include="lib\bitdogHub.js" />
     <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\brains\controller.js" />
