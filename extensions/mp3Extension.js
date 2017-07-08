@@ -69,7 +69,8 @@ Extension.prototype.onInitialize = function (configuration, logger) {
         
         if (typeof soundToPlay !== typeof undefined && soundToPlay !== null && soundToPlay !== '') {
             var fileToPlay = path.resolve(filePath, soundToPlay);
-            child_process.spawn('omxplayer', [fileToPlay]);
+            //child_process.spawn('omxplayer', [fileToPlay]);
+            child_process.spawn('mplayer',[ '-af', 'volume=15:1', fileToPlay]);
         }
          
     });
