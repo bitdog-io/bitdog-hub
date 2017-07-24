@@ -47,6 +47,8 @@
     <Compile Include="lib\bitdogHub.js" />
     <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\brains\controller.js" />
+    <Compile Include="lib\cameras\videoStreamer.js" />
+    <Compile Include="lib\cameras\websocketsProcess.js" />
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\extensionBase.js" />
     <Compile Include="lib\systemEvents.js" />
@@ -79,6 +81,7 @@
     <Folder Include="lib\alarm\" />
     <Folder Include="lib\automation\" />
     <Folder Include="lib\brains\" />
+    <Folder Include="lib\cameras\" />
     <Folder Include="lib\zwave\" />
     <Folder Include="extensions\" />
     <Folder Include="database\" />
