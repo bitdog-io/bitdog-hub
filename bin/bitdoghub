@@ -71,9 +71,11 @@ program
 			var opt = { 
 					stdio: 'inherit', 
 					env: process.env, 
-					cwd: process.cwd, 
+					cwd: process.cwd(), 
 					detached: true 
 				}; 
+
+				opt.env.LD_LIBRARY_PATH = '/usr/local/lib'
 
 				if(options.debug) {
 					console.log("Debug mode");
