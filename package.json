@@ -1,6 +1,6 @@
 {
   "name": "bitdog-hub",
-  "version": "0.1.02",
+  "version": "0.2.00",
   "description": "Bitdog Home Security and Automation",
   "keywords": "iot z-wave zwave raspberrypi home automation sensor openzwave",
   "main": "./main.js",
@@ -15,7 +15,7 @@
   },
   "license": "GPL-3.0",
   "engines": {
-    "node": ">=8.2.1"
+    "node": ">=8.4.0"
   },
   "repository": {
     "type": "git",
