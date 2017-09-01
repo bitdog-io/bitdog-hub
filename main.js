@@ -156,7 +156,7 @@ function detectSigmaDesignsUSB() {
     }
     
     for (index = 0; index < usbIds.length; index++) {
-        regex = new RegExp('[\\s\\S]*' + usbIds[index].replace('.','\.') + '[\\s\\S]*:\\s*(tty.*):');
+        regex = new RegExp('[\\s\\S]*' + usbIds[index].replace('.','\\.') + '[\\s\\S]*:\\s*(tty.*):');
         capture = regex.exec(lines[index]);
         if (capture !== null && capture.length > 1) {
             ttyIds.push(capture[1]);
