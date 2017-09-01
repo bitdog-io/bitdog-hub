@@ -144,15 +144,29 @@ function detectSigmaDesignsUSB() {
     var lines = result.split('\n');
     var capture = null;
     var regex = null;
+    var usbIds = [];
+    var ttyIds = [];
 
     for (var index = 0; index < lines.length; index++) {
         regex = new RegExp('[\\s\\S]*usb\\s*([\\w-.]*):.*idVendor=' + sigmaVendorId );
         capture = regex.exec(lines[index]);
         if (capture !== null && capture.length > 1) {
-            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: capture[1] });
+            usbIds.push(capture[1]);
         }
-          
     }
+    
+    for (index = 0; index < usbIds.length; index++) {
+        regex = new RegExp('[\\s\\S]*' + usbIds[index].replace('.','\.') + '[\\s\\S]*:\\s*(tty.*):');
+        capture = regex.exec(lines[index]);
+        if (capture !== null && capture.length > 1) {
+            ttyIds.push(capture[1]);
+        }
+    }
+    
+    for (index = 0; index < ttyIds.length; index++) {
+        bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: ttyIds[index]});
+    }
+
 }
 
 
