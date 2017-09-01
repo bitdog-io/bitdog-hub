@@ -152,7 +152,7 @@ function detectSigmaDesignsUSB() {
         capture = regex.exec(lines[index]);
         if (capture !== null && capture.length > 1) {
             usbIds.push(capture[1]);
-            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: usbIds[index] });
+            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: capture[1] });
         }
     }
     
@@ -162,7 +162,8 @@ function detectSigmaDesignsUSB() {
             capture = regex.exec(lines[index]);
             if (capture !== null && capture.length > 1) {
                 ttyIds.push(capture[1]);
-                bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs tty device', { id: ttyIds[index] });
+                bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB tty device', { id: capture[1] });
+                break;
             }
         }
     }
