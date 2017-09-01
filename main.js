@@ -104,7 +104,6 @@ if (typeof program.extension !== typeof undefined) {
     }
 }
 
-detectSigmaDesignsUSB();
 loadExtensions();
 
 bitdogHub.start();
@@ -138,38 +137,7 @@ function loadExtensions() {
     }
 }
 
-function detectSigmaDesignsUSB() {
-    var sigmaVendorId = '0658';
-    var result = childProcess.execFileSync('dmesg', { encoding: 'utf8' });
-    var lines = result.split('\n');
-    var capture = null;
-    var regex = null;
-    var usbIds = [];
-    var ttyIds = [];
 
-    for (var index = 0; index < lines.length; index++) {
-        regex = new RegExp('[\\s\\S]*usb\\s*([\\w-.]*):.*idVendor=' + sigmaVendorId );
-        capture = regex.exec(lines[index]);
-        if (capture !== null && capture.length > 1) {
-            usbIds.push(capture[1]);
-        }
-    }
-    
-    for (var deviceIndex = 0; deviceIndex < usbIds.length; deviceIndex++) {
-        for (index = 0; index < lines.length; index++) {
-            regex = new RegExp('[\\s\\S]*' + usbIds[deviceIndex].replace('.', '\\.') + '[\\s\\S]*:\\s*(tty.*):');
-            capture = regex.exec(lines[index]);
-            if (capture !== null && capture.length > 1) {
-                ttyIds.push('/dev/' + capture[1]);
-                bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB tty device', { path: capture[1] });
-                break;
-            }
-        }
-    }
-
-    bitdogClient.configuration.set(constants.ZWAVE_CONNECTIONS_CONFIG, ttyIds); 
-
-}
 
 
 
