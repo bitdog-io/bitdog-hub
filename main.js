@@ -152,19 +152,19 @@ function detectSigmaDesignsUSB() {
         capture = regex.exec(lines[index]);
         if (capture !== null && capture.length > 1) {
             usbIds.push(capture[1]);
+            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: usbIds[index] });
         }
     }
     
-    for (index = 0; index < usbIds.length; index++) {
-        regex = new RegExp('[\\s\\S]*' + usbIds[index].replace('.','\\.') + '[\\s\\S]*:\\s*(tty.*):');
-        capture = regex.exec(lines[index]);
-        if (capture !== null && capture.length > 1) {
-            ttyIds.push(capture[1]);
+    for (var deviceIndex = 0; deviceIndex < usbIds.length; deviceIndex++) {
+        for (index = 0; index < lines.length; index++) {
+            regex = new RegExp('[\\s\\S]*' + usbIds[deviceIndex].replace('.', '\\.') + '[\\s\\S]*:\\s*(tty.*):');
+            capture = regex.exec(lines[index]);
+            if (capture !== null && capture.length > 1) {
+                ttyIds.push(capture[1]);
+                bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs tty device', { id: ttyIds[index] });
+            }
         }
-    }
-    
-    for (index = 0; index < ttyIds.length; index++) {
-        bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: ttyIds[index]});
     }
 
 }
