@@ -23,6 +23,7 @@
 //
 //-----------------------------------------------------------------------------
 
+var childProcess = require('child_process');
 var bitdogHub = require('./lib/bitdogHub.js');
 var bitdogClient = require('bitdog-client');
 var program = require('commander');
@@ -67,7 +68,7 @@ process.on('uncaughtException', function (error) {
 });
 
 program
-    .version('0.0.52')
+    .version('2.0.01')
     .description('Bitdog Hub')
     .option('-l,--logpath <log directory path>', 'The direcotry for log files.')
     .option('-c,--configpath <config directory path>', 'The directory for configuration files.')
@@ -103,6 +104,7 @@ if (typeof program.extension !== typeof undefined) {
     }
 }
 
+detectSigmaDesignsUSB();
 loadExtensions();
 
 bitdogHub.start();
@@ -133,6 +135,23 @@ function loadExtensions() {
         catch (exception) {
             bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Exception loading extension: ', { message: exception.message, stack: exception.stack });
         }
+    }
+}
+
+function detectSigmaDesignsUSB() {
+    var sigmaVendorId = '0658';
+    var result = childProcess.execFileSync('dmesg', { encoding: 'utf8' });
+    var lines = result.split('\n');
+    var capture = null;
+    var regex = null;
+
+    for (var index = 0; index < lines.length; index++) {
+        regex = new RegExp('[\\s\\S]*usb\\s*([\\w-.]*):.*idVendor=' + sigmaVendorId );
+        capture = regex.exec(line);
+        if (capture !== null && capture.length > 0) {
+            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: capture[0] });
+        }
+          
     }
 }
 
