@@ -23,7 +23,6 @@
 //
 //-----------------------------------------------------------------------------
 
-var childProcess = require('child_process');
 var bitdogHub = require('./lib/bitdogHub.js');
 var bitdogClient = require('bitdog-client');
 var program = require('commander');
