@@ -148,8 +148,8 @@ function detectSigmaDesignsUSB() {
     for (var index = 0; index < lines.length; index++) {
         regex = new RegExp('[\\s\\S]*usb\\s*([\\w-.]*):.*idVendor=' + sigmaVendorId );
         capture = regex.exec(lines[index]);
-        if (capture !== null && capture.length > 0) {
-            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: capture[0] });
+        if (capture !== null && capture.length > 1) {
+            bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Found Sigma Designs USB', { id: capture[1] });
         }
           
     }
