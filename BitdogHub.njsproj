@@ -31,6 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="bin\motionHandler.js" />
     <Compile Include="bin\RemoteDebug.js" />
     <Compile Include="extensions\blankExtension.js" />
     <Compile Include="extensions\mp3Extension.js" />
@@ -73,6 +74,7 @@
     <Content Include="extensions\mp3\Ringing-clock.mp3" />
     <Content Include="license.txt" />
     <Content Include="package.json" />
+    <Content Include="motion.conf" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>

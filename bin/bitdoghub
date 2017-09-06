@@ -55,7 +55,7 @@ program.command('register')
         else {
             console.log('Registering node...')
             var adminManager = bitdogClient.adminManager;
-            var nodeName = typeof options.nodename == 'undefined' ? 'New Node' : options.nodename;
+            var nodeName = typeof options.nodename === typeof undefined ? 'New Node' : options.nodename;
             adminManager.registerNode(options.username, options.passphrase, nodeName, function (success) { console.log('Registration successful.'); }, function (error) { console.log(error); });
 
         }
