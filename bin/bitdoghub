@@ -46,9 +46,10 @@ program.command('register')
     .option('-u,--username <username>', 'The username for the Bitdog IoT Cloud to register this hub with.')
     .option('-p,--passphrase <passphrase>', 'The passphrase for the Bitdog IoT Cloud to register this hub with.')
     .option('-n,--nodename <nodename>', 'The name that will be displayed on the Bitdog IoT Cloud dashboard.')
+	.option('-v,--video', 'Enable local security camera.')
     .action(function (options) {
 
-        if (typeof options.passphrase == 'undefined' || typeof options.username == 'undefined') {
+        if (typeof options.passphrase === typeof undefined || typeof options.username === typeof undefined) {
             console.log('Please provide a username and passphrase when registering.');
             this.outputHelp();
         }
@@ -56,7 +57,19 @@ program.command('register')
             console.log('Registering node...')
             var adminManager = bitdogClient.adminManager;
             var nodeName = typeof options.nodename === typeof undefined ? 'New Node' : options.nodename;
-            adminManager.registerNode(options.username, options.passphrase, nodeName, function (success) { console.log('Registration successful.'); }, function (error) { console.log(error); });
+            adminManager.registerNode(options.username, options.passphrase, nodeName, 
+			function (success) { 
+				console.log('Registration successful.');
+				if(options.video !== typeof undefined) {
+					bitdogClient.configuration.set(video:enabled, true);
+				} else {
+					bitdogClient.configuration.set(video:enabled, false);
+				}
+				 
+			}, 
+			function (error) { 
+				console.log(error); 
+			});
 
         }
 
