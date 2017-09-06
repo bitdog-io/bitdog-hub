@@ -61,9 +61,9 @@ program.command('register')
 			function (success) { 
 				console.log('Registration successful.');
 				if(options.video !== typeof undefined) {
-					bitdogClient.configuration.set(video:enabled, true);
+					bitdogClient.configuration.set('video:enabled', true);
 				} else {
-					bitdogClient.configuration.set(video:enabled, false);
+					bitdogClient.configuration.set('video:enabled', false);
 				}
 				 
 			}, 
