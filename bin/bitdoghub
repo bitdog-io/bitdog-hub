@@ -53,6 +53,8 @@ program.command('register')
 		  console.log('Arg ' + index + ': ' + val);
 		});
 
+		console.log(JSON.stringify(options));
+
         if (typeof options.passphrase === typeof undefined || typeof options.username === typeof undefined) {
             console.log('Please provide a username and passphrase when registering.');
             this.outputHelp();
