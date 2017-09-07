@@ -60,7 +60,7 @@ program.command('register')
             adminManager.registerNode(options.username, options.passphrase, nodeName, 
 			function (success) { 
 				console.log('Registration successful.');
-				if(options.video !== typeof undefined) {
+				if(typeof options.video !== typeof undefined) {
 					bitdogClient.configuration.set('video:enabled', true);
 				} else {
 					bitdogClient.configuration.set('video:enabled', false);
