@@ -49,6 +49,10 @@ program.command('register')
 	.option('-v,--video', 'Enable local security camera.')
     .action(function (options) {
 
+		process.argv.forEach((val, index) => {
+		  console.log('Arg ${index}: ${val}');
+		});
+
         if (typeof options.passphrase === typeof undefined || typeof options.username === typeof undefined) {
             console.log('Please provide a username and passphrase when registering.');
             this.outputHelp();
@@ -56,9 +60,6 @@ program.command('register')
         else {
             console.log('Registering node...')
             var adminManager = bitdogClient.adminManager;
-			process.argv.forEach((val, index) => {
-			  console.log('Arg ${index}: ${val}');
-			});
 
             var nodeName = typeof options.nodename === typeof undefined ? 'New Node' : options.nodename;
             adminManager.registerNode(options.username, options.passphrase, nodeName, 
