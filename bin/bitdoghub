@@ -50,7 +50,7 @@ program.command('register')
     .action(function (options) {
 
 		process.argv.forEach((val, index) => {
-		  console.log('Arg ${index}: ${val}');
+		  console.log('Arg ' + index + ': ' + val);
 		});
 
         if (typeof options.passphrase === typeof undefined || typeof options.username === typeof undefined) {
