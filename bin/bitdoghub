@@ -108,7 +108,7 @@ program
 			var fs = require('fs');
 			var packageFilePath = path.resolve(__dirname, '../');
 			var debugScriptPath = path.resolve(__dirname, 'RemoteDebug.js');
-			var pidFile = options.pidfile ? path.resolve(__dirname, options.pidfile) : path.resolve(__dirname,'pid.txt');
+			var pidFile = options.pidpath ? path.resolve(__dirname, options.pidpath) : path.resolve(__dirname,'pid.txt');
 			var args = [];
 
 			var opt = { 
