@@ -87,6 +87,7 @@ program
 	.option('-t,--tail', 'Write logs to console also.')
     .option('-e,--extension <extension file path | clear>', 'Path to file that has extension code. Use clear to remote extension from stored configuration.')
     .option('-d,--debug', 'Start remote debugging and wait for attachment.')
+	.option('-p,--pidpath', 'Specify a pid file path.')
 
 
     .action(function (options) {
@@ -107,7 +108,7 @@ program
 			var fs = require('fs');
 			var packageFilePath = path.resolve(__dirname, '../');
 			var debugScriptPath = path.resolve(__dirname, 'RemoteDebug.js');
-			var pidFile = path.resolve(__dirname,'pid.txt');
+			var pidFile = options.pidfile ? path.resolve(__dirname, options.pidfile) : path.resolve(__dirname,'pid.txt');
 			var args = [];
 
 			var opt = { 
