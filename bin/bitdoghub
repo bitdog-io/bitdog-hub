@@ -108,7 +108,7 @@ program
 			var fs = require('fs');
 			var packageFilePath = path.resolve(__dirname, '../');
 			var debugScriptPath = path.resolve(__dirname, 'RemoteDebug.js');
-			var pidFile = options.pidpath ? path.resolve(__dirname, options.pidpath) : path.resolve(__dirname,'pid.txt');
+			var pidFile = typeof options.pidpath !== typeof undefined ? path.resolve(__dirname, options.pidpath) : path.resolve(__dirname,'pid.txt');
 			var args = [];
 
 			var opt = { 
@@ -182,10 +182,13 @@ program
 program
     .command('stop')
     .description('Stop Bitdog Hub.')
-    .action(function (options) {
+    .option('-p,--pidpath', 'Specify a pid file path.')
+    
+	.action(function (options) {
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
-		var pidFile = path.resolve(__dirname,'pid.txt');
+        var pidFile = typeof options.pidpath !== typeof undefined ? path.resolve(__dirname, options.pidpath) : path.resolve(__dirname,'pid.txt');
+
 
 		try {
 
