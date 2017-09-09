@@ -108,10 +108,8 @@ program
 			var fs = require('fs');
 			var packageFilePath = path.resolve(__dirname, '../');
 			var debugScriptPath = path.resolve(__dirname, 'RemoteDebug.js');
-			var pidFile = typeof options.pidpath !== typeof undefined ? path.resolve(__dirname, options.pidpath) : path.resolve(__dirname,'pid.txt');
+			var pidFile = path.resolve(__dirname,'pid.txt');
 			var args = [];
-
-			console.log("Starting process with pid file at " + pidFile);
 
 			var opt = { 
 					stdio: 'inherit', 
@@ -121,6 +119,13 @@ program
 				}; 
 
 				opt.env.LD_LIBRARY_PATH = '/usr/local/lib'
+
+				if(options.pidpath) {
+					console.log("Pid path option provided")
+					pidFile = path.resolve(__dirname, options.pidpath);
+				}
+
+				console.log("Starting process with pid file at " + pidFile);
 
 				if(options.debug) {
 					console.log("Debug mode");
@@ -194,8 +199,14 @@ program
 	.action(function (options) {
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
-        var pidFile = typeof options.pidpath !== typeof undefined ? path.resolve(__dirname, options.pidpath) : path.resolve(__dirname,'pid.txt');
+        var pidFile = path.resolve(__dirname,'pid.txt');
 
+		if(options.pidpath) {
+			console.log("Pid path option provided")
+			pidFile = path.resolve(__dirname, options.pidpath);
+		}
+
+	    console.log("Stopping process with pid file at " + pidFile);
 
 		try {
 
