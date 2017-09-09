@@ -87,7 +87,7 @@ program
 	.option('-t,--tail', 'Write logs to console also.')
     .option('-e,--extension <extension file path | clear>', 'Path to file that has extension code. Use clear to remote extension from stored configuration.')
     .option('-d,--debug', 'Start remote debugging and wait for attachment.')
-	.option('-p,--pidpath', 'Specify a pid file path.')
+	.option('-p,--pidpath <pid file path>', 'Specify a pid file path.')
 
 
     .action(function (options) {
@@ -194,7 +194,7 @@ program
 program
     .command('stop')
     .description('Stop Bitdog Hub.')
-    .option('-p,--pidpath', 'Specify a pid file path.')
+    .option('-p,--pidpath <pid file path>', 'Specify a pid file path.')
     
 	.action(function (options) {
         var fs = require('fs');
