@@ -72,6 +72,7 @@ program.command('register')
 			}, 
 			function (error) { 
 				console.log(error); 
+				process.exitCode = 1;
 			});
 
         }

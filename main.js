@@ -63,7 +63,8 @@ process.on('SIGINT', function () {
 });
 
 process.on('uncaughtException', function (error) {
-    bitdogClient.logger.logProcessEvent('Bitdog Hub','Unhandled exception: ' , error);
+    bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ' , error);
+    process.exit(1);
 });
 
 program
