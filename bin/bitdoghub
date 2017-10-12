@@ -46,7 +46,6 @@ program.command('register')
     .option('-u,--username <username>', 'The username for the Bitdog IoT Cloud to register this hub with.')
     .option('-p,--passphrase <passphrase>', 'The passphrase for the Bitdog IoT Cloud to register this hub with.')
     .option('-n,--nodename <nodename>', 'The name that will be displayed on the Bitdog IoT Cloud dashboard.')
-	.option('-v,--video', 'Enable local security camera.')
     .action(function (options) {
 
         if (typeof options.passphrase === typeof undefined || typeof options.username === typeof undefined) {
@@ -60,12 +59,6 @@ program.command('register')
             var nodeName = typeof options.nodename === typeof undefined ? 'New Node' : options.nodename;
             adminManager.registerNode(options.username, options.passphrase, nodeName, 
 			function (success) { 
-
-				if(typeof options.video !== typeof undefined) {
-					bitdogClient.configuration.set('video:enabled', true);
-				} else {
-					bitdogClient.configuration.set('video:enabled', false);
-				}
 
 				console.log('Registration successful.');
 				 
