@@ -31,7 +31,8 @@
     "openzwave-shared": "git+https://github.com/openzwave/node-openzwave-shared.git",
     "suncalc": "^1.7.0",
     "tingodb": "^0.4.2",
-    "ws": "^3.1.0"
+    "ws": "^3.1.0",
+    "request": "^2.83.0"
   },
   "optionalDependencies": {
     "rpio": "^0.9.11"

@@ -48,6 +48,7 @@
     <Compile Include="lib\bitdogHub.js" />
     <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\brains\controller.js" />
+    <Compile Include="lib\cameras\dvrManager.js" />
     <Compile Include="lib\cameras\videoManager.js" />
     <Compile Include="lib\cameras\videoStreamer.js" />
     <Compile Include="lib\cameras\websocketsProcess.js" />
