@@ -54,6 +54,9 @@
     <Compile Include="lib\cameras\websocketsProcess.js" />
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\extensionBase.js" />
+    <Compile Include="lib\ipcManager.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="lib\systemEvents.js" />
     <Compile Include="lib\zwave\zwaveAlarmNotification.js" />
     <Compile Include="lib\zwave\zwaveScene.js" />
