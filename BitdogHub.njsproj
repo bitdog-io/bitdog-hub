@@ -31,6 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="bin\motionHandler.js" />
     <Compile Include="bin\RemoteDebug.js" />
     <Compile Include="extensions\blankExtension.js" />
     <Compile Include="extensions\mp3Extension.js" />
@@ -47,8 +48,15 @@
     <Compile Include="lib\bitdogHub.js" />
     <Compile Include="lib\brains\bitdogBrain.js" />
     <Compile Include="lib\brains\controller.js" />
+    <Compile Include="lib\cameras\dvrManager.js" />
+    <Compile Include="lib\cameras\videoManager.js" />
+    <Compile Include="lib\cameras\videoStreamer.js" />
+    <Compile Include="lib\cameras\websocketsProcess.js" />
     <Compile Include="lib\eventProcessor.js" />
     <Compile Include="lib\extensionBase.js" />
+    <Compile Include="lib\ipcManager.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="lib\systemEvents.js" />
     <Compile Include="lib\zwave\zwaveAlarmNotification.js" />
     <Compile Include="lib\zwave\zwaveScene.js" />
@@ -70,6 +78,7 @@
     <Content Include="extensions\mp3\Ringing-clock.mp3" />
     <Content Include="license.txt" />
     <Content Include="package.json" />
+    <Content Include="motion.conf" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +88,7 @@
     <Folder Include="lib\alarm\" />
     <Folder Include="lib\automation\" />
     <Folder Include="lib\brains\" />
+    <Folder Include="lib\cameras\" />
     <Folder Include="lib\zwave\" />
     <Folder Include="extensions\" />
     <Folder Include="database\" />

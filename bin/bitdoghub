@@ -1,4 +1,30 @@
 #!/usr/bin/env node
+
+//-----------------------------------------------------------------------------
+//
+//	bitdoghub
+//
+//	Copyright (c) 2015-2017 Bitdog LLC.
+//
+//	SOFTWARE NOTICE AND LICENSE
+//
+//	This file is part of bitdog-hub.
+//
+//	bitdog-hub is free software: you can redistribute it and/or modify
+//	it under the terms of the GNU General Public License as published
+//	by the Free Software Foundation, either version 3 of the License,
+//	or (at your option) any later version.
+//
+//	bitdog-hub is distributed in the hope that it will be useful,
+//	but WITHOUT ANY WARRANTY; without even the implied warranty of
+//	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//	GNU General Public License for more details.
+//
+//	You should have received a copy of the GNU General Public License
+//	along with bitdog-hub.  If not, see <http://www.gnu.org/licenses/>.
+//
+//-----------------------------------------------------------------------------
+
 var path = require('path');
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
@@ -13,7 +39,7 @@ function continueUpgrade() {
 }
 
 program
-    .version('0.1.00');
+    .version('2.0.01');
 	 
 program.command('register')
     .description('Register this Bitdog Hub with Bitdog Cloud.')
@@ -22,15 +48,25 @@ program.command('register')
     .option('-n,--nodename <nodename>', 'The name that will be displayed on the Bitdog IoT Cloud dashboard.')
     .action(function (options) {
 
-        if (typeof options.passphrase == 'undefined' || typeof options.username == 'undefined') {
+        if (typeof options.passphrase === typeof undefined || typeof options.username === typeof undefined) {
             console.log('Please provide a username and passphrase when registering.');
             this.outputHelp();
         }
         else {
             console.log('Registering node...')
             var adminManager = bitdogClient.adminManager;
-            var nodeName = typeof options.nodename == 'undefined' ? 'New Node' : options.nodename;
-            adminManager.registerNode(options.username, options.passphrase, nodeName, function (success) { console.log('Registration successful.'); }, function (error) { console.log(error); });
+
+            var nodeName = typeof options.nodename === typeof undefined ? 'New Node' : options.nodename;
+            adminManager.registerNode(options.username, options.passphrase, nodeName, 
+			function (success) { 
+
+				console.log('Registration successful.');
+				 
+			}, 
+			function (error) { 
+				console.log(error); 
+				process.exitCode = 1;
+			});
 
         }
 
@@ -45,6 +81,7 @@ program
 	.option('-t,--tail', 'Write logs to console also.')
     .option('-e,--extension <extension file path | clear>', 'Path to file that has extension code. Use clear to remote extension from stored configuration.')
     .option('-d,--debug', 'Start remote debugging and wait for attachment.')
+	.option('-p,--pidpath <pid file path>', 'Specify a pid file path.')
 
 
     .action(function (options) {
@@ -71,9 +108,18 @@ program
 			var opt = { 
 					stdio: 'inherit', 
 					env: process.env, 
-					cwd: process.cwd, 
+					cwd: process.cwd(), 
 					detached: true 
 				}; 
+
+				opt.env.LD_LIBRARY_PATH = '/usr/local/lib'
+
+				if(options.pidpath) {
+					console.log("Pid path option provided")
+					pidFile = path.resolve(__dirname, options.pidpath);
+				}
+
+				console.log("Starting process with pid file at " + pidFile);
 
 				if(options.debug) {
 					console.log("Debug mode");
@@ -111,7 +157,12 @@ program
 				// required so the parent can exit 
 				child.unref(); 
 
-				fs.writeFileSync(pidFile, pidId);
+				try {
+					fs.writeFileSync(pidFile, pidId);
+				}
+				catch(error) {
+					console.log("Could not write to pid file: " + error);
+				}
 
 				setTimeout(function() {
 					try
@@ -137,10 +188,19 @@ program
 program
     .command('stop')
     .description('Stop Bitdog Hub.')
-    .action(function (options) {
+    .option('-p,--pidpath <pid file path>', 'Specify a pid file path.')
+    
+	.action(function (options) {
         var fs = require('fs');
 		var packageFilePath = path.resolve(__dirname, '../');
-		var pidFile = path.resolve(__dirname,'pid.txt');
+        var pidFile = path.resolve(__dirname,'pid.txt');
+
+		if(options.pidpath) {
+			console.log("Pid path option provided")
+			pidFile = path.resolve(__dirname, options.pidpath);
+		}
+
+	    console.log("Stopping process with pid file at " + pidFile);
 
 		try {
 

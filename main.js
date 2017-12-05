@@ -63,11 +63,12 @@ process.on('SIGINT', function () {
 });
 
 process.on('uncaughtException', function (error) {
-    bitdogClient.logger.logProcessEvent('Bitdog Hub','Unhandled exception: ' , error);
+    bitdogClient.logger.logProcessEvent('Bitdog Hub', 'Unhandled exception: ' , error);
+    process.kill(process.pid, 'SIGINT');
 });
 
 program
-    .version('0.0.52')
+    .version('2.0.01')
     .description('Bitdog Hub')
     .option('-l,--logpath <log directory path>', 'The direcotry for log files.')
     .option('-c,--configpath <config directory path>', 'The directory for configuration files.')
@@ -135,6 +136,8 @@ function loadExtensions() {
         }
     }
 }
+
+
 
 
 

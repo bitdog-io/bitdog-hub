@@ -156,7 +156,7 @@ Extension.prototype.play = function (configuration, logger) {
 
     var text = sayQueue.shift();
 
-    if (typeof text === undefined || text === null) {
+    if (typeof text === typeof undefined || text === null) {
         this.isPlaying = false;
         return;
     }

@@ -84,3 +84,4 @@ obj
 
 /typings/globals/commander/index.d.ts
 /typings/globals/node/typings.json
+.ntvs_analysis.dat.tmp
