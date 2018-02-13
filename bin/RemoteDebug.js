@@ -103,7 +103,7 @@ function parseCommandLine() {
 
 function ensureDebuggeeStarted() {
     if (debuggee == null && (!startDebuggeeOnRemoteConnect || remoteServerSocket)) {
-        var debugArg = '--debug';
+        var debugArg = '--inspect';
         if (startDebuggeeBrokenAtEntryPoint) {
             debugArg = debugArg + '-brk';
         }
