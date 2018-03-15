@@ -25,21 +25,37 @@
 //
 //-----------------------------------------------------------------------------
 
+var os = require('os');
 var path = require('path');
 var program = require('commander');
 var bitdogClient = require('bitdog-client');
 var child_process = require('child_process');
 
-function continueUpgrade() {
-	var child = child_process.spawn('/bin/bash', [ '-c', '/bin/bash <(curl --silent --output - --max-time 120 https://bitdog.io/installhub)' ], { stdio: 'inherit' });
+function getPublicIPAddress() {
+	var networkInterfaces = os.networkInterfaces( );
+	var index = 0;
+	var addresses  = null;
+	var interfaceName = '';
+	var address = '127.0.0.1'
 
-	child.on('close', function(code) {
-	});
+	for(interfaceName in networkInterfaces) {
+		addresses  = networkInterfaces[interfaceName]
+		for(index = 0; index < addresses.length; index++)
+		{
+			address = addresses[index];
 
+			if(address.family === 'IPv4' && address.address !== '127.0.0.1') {
+				address = address.address ;
+				break;
+			}
+		}
+	}
+
+	return address;
 }
 
 program
-    .version('2.0.01');
+    .version('2.0.14');
 	 
 program.command('register')
     .description('Register this Bitdog Hub with Bitdog Cloud.')
@@ -123,9 +139,8 @@ program
 
 				if(options.debug) {
 					console.log("Debug mode");
-					args.push(debugScriptPath);
+					args.push('--inspect-brk=' + getPublicIPAddress() + ':9229');
 					args.push(packageFilePath);
-
 				} else {
 					args.push(packageFilePath);
 				}
@@ -253,65 +268,6 @@ program
 	 program.outputHelp();
 	});
 
-program
-    .command('upgrade')
-    .description('Upgrade to the latest Bitdog Hub software.')
-    .action(function (options) {
-        var fs = require('fs');
-		var packageFilePath = path.resolve(__dirname, '../');
-		var pidFile = path.resolve(__dirname,'pid.txt');
-		var isRunning = true;
-
-		try {
-
-			try
-			{
-				fs.accessSync(pidFile, fs.F_OK);
-			}
-			catch(e) {
-				isRunning = false;
-			    console.log('Bitdog Hub does not seem to be running');
-
-			}
-
-			if(isRunning === true) {
-				var pid = fs.readFileSync(pidFile);
-				var pidId = parseInt(pid);
-
-				console.log('Bitdog Hub is running, stopping now');
-
-				try
-				{
-					process.kill(pidId,'SIGINT');
-				}
-				catch(e) {
-				}
-
-				setTimeout(function() {
-					try
-					{
-						child_process.execSync('/bin/kill -s 0 ' + pidId);
-						console.log('Bitdog Hub did not stop in timely fashion');
-						process.exitCode = 1;
-
-					} catch(e) {					
-						console.log('Bitdog Hub has stopped');
-   						fs.unlinkSync(pidFile);
-						continueUpgrade();
-					}
-
-				}, 20000);
-
-			} else {
-				continueUpgrade();
-			}
-   
-		} catch (e) {
-			console.log(JSON.stringify(e));
-		}
-
-
-    });
 
 program.parse(process.argv);
 
