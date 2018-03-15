@@ -185,12 +185,12 @@ program
 
 						child_process.execSync('/bin/kill -s 0 ' + pidId);
 						console.log('Bitdog Hub started');
-					    process.exitCode = 0;
+					    process.exit(0);
 
 					} catch(e) {					
 						console.log('Bitdog Hub has failed to start properly, pid:' + pidId);
    						fs.unlinkSync(pidFile);
-						process.exitCode = 1;
+						process.exit(1);
 					}
 
 				}, 10000);
