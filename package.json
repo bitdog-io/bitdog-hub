@@ -1,6 +1,6 @@
 {
   "name": "bitdog-hub",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "description": "Bitdog Home Security and Automation",
   "keywords": [ "iot" ,"z-wave", "zwave", "raspberrypi" ,"home automation" ,"sensor", "openzwave" ],
   "main": "./main.js",

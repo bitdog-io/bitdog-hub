@@ -55,7 +55,7 @@ function getPublicIPAddress() {
 }
 
 program
-    .version('2.0.14');
+    .version('2.0.15');
 	 
 program.command('register')
     .description('Register this Bitdog Hub with Bitdog Cloud.')
@@ -225,8 +225,7 @@ program
 			}
 			catch(e) {
 				console.log('Process id file not found, bitdog-hub may not be running');
-				process.exitCode = 1;
-				return;
+				process.exit(1);
 			}
 
 			var pid = fs.readFileSync(pidFile);
@@ -244,12 +243,12 @@ program
 				{
 					child_process.execSync('/bin/kill -s 0 ' + pidId);
 					console.log('Bitdog Hub did not stop in timely fashion');
-					process.exitCode = 1;
+					process.exit(1);
 
 				} catch(e) {					
 				    console.log('Bitdog Hub has stopped');
    				    fs.unlinkSync(pidFile);
-					process.exitCode = 0;
+					process.exit(0);
 				}
 
 			}, 20000);
@@ -273,7 +272,7 @@ program.parse(process.argv);
 
 if (!process.argv.slice(2).length) {
     program.outputHelp();
-	process.exitCode = 1;
+	process.exit(1);
 
 }
 
