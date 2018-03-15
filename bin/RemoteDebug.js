@@ -20,7 +20,7 @@ var spawn = require('child_process').spawn;
 var localHost = 'localhost';
 var remoteHost = process.env.COMPUTERNAME;
 
-var localClientPort = 5859;
+var localClientPort = 9229;
 var remoteServerPort = 5858;
 
 var startDebuggeeOnRemoteConnect = false;
@@ -103,7 +103,7 @@ function parseCommandLine() {
 
 function ensureDebuggeeStarted() {
     if (debuggee == null && (!startDebuggeeOnRemoteConnect || remoteServerSocket)) {
-        var debugArg = '--debug';
+        var debugArg = '--inspect';
         if (startDebuggeeBrokenAtEntryPoint) {
             debugArg = debugArg + '-brk';
         }
