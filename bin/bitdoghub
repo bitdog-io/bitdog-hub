@@ -67,6 +67,7 @@ program.command('register')
         if (typeof options.passphrase === typeof undefined || typeof options.username === typeof undefined) {
             console.log('Please provide a username and passphrase when registering.');
             this.outputHelp();
+			process.exit(0);
         }
         else {
             console.log('Registering node...')
