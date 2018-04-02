@@ -77,11 +77,12 @@ program.command('register')
 			function (success) { 
 
 				console.log('Registration successful.');
+				process.exit(0);
 				 
 			}, 
 			function (error) { 
 				console.log(error); 
-				process.exitCode = 1;
+				process.exit(1);
 			});
 
         }
